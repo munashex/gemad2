@@ -1,0 +1,132 @@
+/* ============================================
+   GOOGLE FONTS IMPORT
+   ============================================ */
+
+/* Montserrat — Headings (Bold, Industrial Feel) */
+/* Lato — Body Text (Clean, Readable) */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap');
+
+
+/* ============================================
+   TAILWIND IMPORT
+   ============================================ */
+
+@import "tailwindcss";
+
+
+/* ============================================
+   GEMAD WEBSITE — DESIGN TOKENS
+   CLIENT-APPROVED COLORS
+   ============================================ */
+
+@theme {
+  /* -- Primary Brand Colors (Client Approved) -- */
+
+  /* Dark Slate Blue — #1d2d3d */
+  /* Usage: Primary Text, Nav Links, Headers, Footer Backgrounds, Button Hover */
+  --color-primary: #1d2d3d;
+
+  /* Rich Brown — #7C562E */
+  /* Usage: CTA Buttons, Highlights, Link Hovers, Accent Elements, Active States, Dividers */
+  --color-accent: #7C562E;
+
+
+  /* -- Supporting Colors -- */
+
+  /* Slate Grey-Blue — #4A5B6B */
+  /* Usage: Subheadings, Icon Colors, Secondary Text, Card Borders */
+  --color-tertiary: #4A5B6B;
+
+  /* Deep Teal Green — #1F5C4E */
+  /* Usage: ESG / Sustainability Sections, Trust Indicators, Success Badges */
+  --color-trust: #1F5C4E;
+
+
+  /* -- Background Colors -- */
+
+  /* Warm Off-White — #F9F7F3 */
+  /* Usage: Main Page Background, Large Content Areas */
+  --color-light: #F9F7F3;
+
+  /* Light Sand — #EDE7DD */
+  /* Usage: Alternating Section Backgrounds, Cards, About Panels */
+  --color-sand: #EDE7DD;
+
+
+  /* -- Text Colors -- */
+
+  /* Charcoal — #2B2B2B */
+  /* Usage: Body Text, Paragraphs, Form Labels */
+  --color-dark: #2B2B2B;
+
+
+  /* ============================================
+     TYPOGRAPHY — FONT FAMILIES
+     ============================================ */
+
+  /* Montserrat — Bold, Uppercase, Industrial/Mining Feel */
+  /* Usage: All Headings (h1-h6), Nav Links, Buttons, Section Titles */
+  --font-heading: 'Montserrat', sans-serif;
+
+  /* Lato — Clean, Highly Readable, Modern */
+  /* Usage: Body Text, Paragraphs, Form Fields, Footer Text, Lists */
+  --font-body: 'Lato', sans-serif;
+
+
+  /* ============================================
+     FONT WEIGHTS (Reference)
+     ============================================ */
+  
+  /* Montserrat Available Weights: 400, 500, 600, 700, 800, 900 + Italics */
+  /* Lato Available Weights: 300, 400, 700, 900 + Italics */
+}
+
+
+/* ============================================
+   GLOBAL BASE STYLES
+   ============================================ */
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--color-dark);
+  background-color: var(--color-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* All headings use Montserrat by default */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+/* Smooth transitions on interactive elements */
+a, button {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Remove default button styles */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Image defaults */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
