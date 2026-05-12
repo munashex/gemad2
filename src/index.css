@@ -1,2 +1,12 @@
-@import "tailwindcss";
-@import "tailwindcss-animated"
+@import 'tailwindcss';
+@import "tailwindcss-animated";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --rotate-y-180: rotateY(180deg);
+  --perspective-1000: perspective(1000px);
+  --preserve-3d: transform-style: preserve-3d;
+  --backface-hidden: backface-visibility: hidden;
+}
+
+/* Rest of your existing animations... */

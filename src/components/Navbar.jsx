@@ -7,8 +7,19 @@ const Navbar = () => {
     const [toggleNav, setToggleNav] = useState(false)
     const [isServicesOpen, setIsServicesOpen] = useState(false)
     const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
     const location = useLocation()
 
+    // Handle scroll effect
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20)
+        }
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    // Close mobile menu on route change
     useEffect(() => {
         setToggleNav(false)
         setIsMobileServicesOpen(false)
@@ -35,14 +46,17 @@ const Navbar = () => {
     const isActive = (path) => location.pathname === path
 
     return (
-        <div>
-
+        <div className={`sticky top-0 z-50 transition-all duration-300 ${
+            scrolled 
+                ? 'bg-white/95 backdrop-blur-md shadow-lg' 
+                : 'bg-white'
+        }`}>
             {/* ── Desktop ── */}
             <div className="hidden lg:block">
-                <div className="container mx-auto px-6 xl:px-16 py-3">
+                <div className="container mx-auto px-6 xl:px-16 py-2">
                     <div className="flex items-center justify-between">
 
-                        {/* Logo */}
+                        {/* Logo - reduced size */}
                         <Link to="/" className="shrink-0">
                             <img
                                 src="images/logo/logo.png"
@@ -51,10 +65,9 @@ const Navbar = () => {
                             />
                         </Link>
 
-                        {/* Nav links */}
-                        <div className="flex items-center gap-1">
+                        {/* Nav links - better spacing */}
+                        <div className="flex items-center gap-2">
                             {navLinks.map((item) => {
-
                                 if (item.isDropdown) {
                                     return (
                                         <div
@@ -63,10 +76,10 @@ const Navbar = () => {
                                             onMouseEnter={() => setIsServicesOpen(true)}
                                             onMouseLeave={() => setIsServicesOpen(false)}
                                         >
-                                            <button className={`flex items-center gap-1 cursor-pointer text-base font-semibold py-2 px-3 transition-colors duration-200 ${
+                                            <button className={`flex items-center gap-1 cursor-pointer text-base font-semibold py-2 px-4 transition-all duration-200 rounded-lg ${
                                                 location.pathname === '/services'
-                                                    ? 'text-[#764f24]'
-                                                    : 'text-gray-800 hover:text-[#764f24]'
+                                                    ? 'text-[#764f24] bg-[#764f24]/5'
+                                                    : 'text-gray-700 hover:text-[#764f24] hover:bg-gray-50'
                                             }`}>
                                                 {item.name}
                                                 <CgChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
@@ -74,8 +87,8 @@ const Navbar = () => {
 
                                             {isServicesOpen && (
                                                 <div className="absolute top-full left-0 pt-2 z-50 animate-fade-down">
-                                                    <div className="w-72 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden">
-                                                        <div className="h-0.75 bg-[#764f24]" />
+                                                    <div className="w-80 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
+                                                        <div className="h-0.5 bg-gradient-to-r from-[#764f24] to-[#c89a60]" />
                                                         <div className="py-2">
                                                             {item.items.map((sub) => (
                                                                 <Link
@@ -99,10 +112,10 @@ const Navbar = () => {
                                     <Link
                                         key={item.name}
                                         to={item.path}
-                                        className={`text-base font-semibold py-2 px-3 transition-colors duration-200 ${
+                                        className={`text-base font-semibold py-2 px-4 rounded-lg transition-all duration-200 ${
                                             isActive(item.path)
-                                                ? 'text-[#764f24]'
-                                                : 'text-gray-800 hover:text-[#764f24]'
+                                                ? 'text-[#764f24] bg-[#764f24]/5'
+                                                : 'text-gray-700 hover:text-[#764f24] hover:bg-gray-50'
                                         }`}
                                     >
                                         {item.name}
@@ -111,10 +124,10 @@ const Navbar = () => {
                             })}
                         </div>
 
-                        {/* CTA */}
+                        {/* CTA - using brand color */}
                         <Link
                             to="/contact"
-                            className="text-base font-semibold px-7 py-2.5 rounded-full bg-[#15202a] text-white hover:bg-[#764f24] transition-all duration-300 hover:scale-105 shadow-sm"
+                            className="text-base font-semibold px-6 py-2.5 rounded-full bg-[#764f24] text-white hover:bg-[#a06a32] transition-all duration-300 hover:scale-105 shadow-md"
                         >
                             Contact Us
                         </Link>
@@ -124,7 +137,7 @@ const Navbar = () => {
 
             {/* ── Mobile ── */}
             <div className="lg:hidden">
-                <div className="px-4 py-3 flex items-center justify-between">
+                <div className="px-4 py-2 flex items-center justify-between">
                     <Link to="/" onClick={() => setToggleNav(false)}>
                         <img
                             src="images/logo/logo.png"
@@ -145,67 +158,70 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                {/* Mobile menu */}
-                {toggleNav && (
-                    <div className="absolute left-0 right-0 bg-white  z-40 animate-fade-down">
-                        <div className="px-4 py-3 space-y-1">
-                            {navLinks.map((item) => {
-
-                                if (item.isDropdown) {
-                                    return (
-                                        <div key={item.name}>
-                                            <button
-                                                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                                                className="flex items-center justify-between w-full text-left px-4 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-lg transition-colors duration-200"
-                                            >
-                                                <span>{item.name}</span>
-                                                <CgChevronDown className={`w-5 h-5 transition-transform duration-200 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
-                                            </button>
-
-                                            {isMobileServicesOpen && (
-                                                <div className="ml-4 animate-fade-down border-l-2 border-[#764f24]/30 pl-4 space-y-1">
-                                                    {item.items.map((sub) => (
-                                                        <Link
-                                                            key={sub.name}
-                                                            to={sub.path}
-                                                            onClick={() => { setToggleNav(false); setIsMobileServicesOpen(false) }}
-                                                            className="block px-4 py-2.5 text-sm text-gray-600 hover:text-[#764f24] hover:bg-gray-50 rounded-lg transition-colors duration-200"
-                                                        >
-                                                            {sub.name}
-                                                        </Link>
-                                                    ))}
-                                                </div>
-                                            )}
-                                        </div>
-                                    )
-                                }
-
+                {/* Mobile menu - with animation */}
+                <div 
+                    className={`absolute left-0 right-0 bg-white border-b border-gray-100 z-40 transition-all duration-300 overflow-hidden ${
+                        toggleNav ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
+                    }`}
+                >
+                    <div className="px-4 py-4 space-y-1">
+                        {navLinks.map((item) => {
+                            if (item.isDropdown) {
                                 return (
-                                    <Link
-                                        key={item.name}
-                                        to={item.path}
-                                        onClick={() => setToggleNav(false)}
-                                        className={`block px-4 py-3 text-base font-semibold rounded-lg transition-colors duration-200 ${
-                                            isActive(item.path)
-                                                ? 'text-[#764f24] bg-[#764f24]/5'
-                                                : 'text-gray-800 hover:bg-gray-50 hover:text-[#764f24]'
-                                        }`}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                )
-                            })}
+                                    <div key={item.name} className="space-y-1">
+                                        <button
+                                            onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                                            className="flex items-center justify-between w-full text-left px-4 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                                        >
+                                            <span>{item.name}</span>
+                                            <CgChevronDown className={`w-5 h-5 transition-transform duration-200 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                                        </button>
 
-                            <Link
-                                to="/contact"
-                                onClick={() => setToggleNav(false)}
-                                className="block text-center mt-2 px-4 py-3 text-base font-semibold rounded-full bg-[#15202a] text-white hover:bg-[#764f24] transition-all duration-300"
-                            >
-                                Contact Us
-                            </Link>
-                        </div>
+                                        <div className={`overflow-hidden transition-all duration-300 ${
+                                            isMobileServicesOpen ? 'max-h-96' : 'max-h-0'
+                                        }`}>
+                                            <div className="ml-4 border-l-2 border-[#764f24]/30 pl-4 space-y-1">
+                                                {item.items.map((sub) => (
+                                                    <Link
+                                                        key={sub.name}
+                                                        to={sub.path}
+                                                        onClick={() => { setToggleNav(false); setIsMobileServicesOpen(false) }}
+                                                        className="block px-4 py-2.5 text-sm text-gray-600 hover:text-[#764f24] hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                                                    >
+                                                        {sub.name}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            }
+
+                            return (
+                                <Link
+                                    key={item.name}
+                                    to={item.path}
+                                    onClick={() => setToggleNav(false)}
+                                    className={`block px-4 py-3 text-base font-semibold rounded-lg transition-colors duration-200 ${
+                                        isActive(item.path)
+                                            ? 'text-[#764f24] bg-[#764f24]/5'
+                                            : 'text-gray-800 hover:bg-gray-50 hover:text-[#764f24]'
+                                    }`}
+                                >
+                                    {item.name}
+                                </Link>
+                            )
+                        })}
+
+                        <Link
+                            to="/contact"
+                            onClick={() => setToggleNav(false)}
+                            className="block text-center mt-4 px-4 py-3 text-base font-semibold rounded-full bg-[#764f24] text-white hover:bg-[#a06a32] transition-all duration-300"
+                        >
+                            Contact Us
+                        </Link>
                     </div>
-                )}
+                </div>
             </div>
         </div>
     )
