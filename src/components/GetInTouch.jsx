@@ -50,10 +50,10 @@ const GetInTouch = () => {
                             <FaArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-300" />
                         </Link>
                         <Link
-                            to="/services"
+                            to="/commodities"
                             className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border border-white/20 hover:bg-white/20 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 group"
                         >
-                            View Our Services
+                            View Our Commodities
                             <FaArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-300" />
                         </Link>
                     </div>
