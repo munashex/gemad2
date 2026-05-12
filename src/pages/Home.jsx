@@ -157,7 +157,7 @@ const Home = () => {
                                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#764f24]/5 rounded-full">
                                     <span className="w-2 h-2 rounded-full bg-[#764f24] animate-pulse" />
                                     <span className="text-[#764f24] text-xs font-semibold tracking-wider uppercase">
-                                        South African Mineral Asset Development
+                                        South African Mineral Asset Development Entity
                                     </span>
                                 </div>
 
@@ -207,10 +207,7 @@ const Home = () => {
                                         <FaCheckCircle size={14} className="text-[#764f24]" />
                                         SAMREC Compliant
                                     </span>
-                                    <span className="flex items-center gap-2">
-                                        <FaCheckCircle size={14} className="text-[#764f24]" />
-                                        100% Black-Owned
-                                    </span>
+                                
                                 </div>
                             </div>
 

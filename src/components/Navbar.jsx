@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { CgMenu, CgChevronDown } from 'react-icons/cg'
+import { CgMenu } from 'react-icons/cg'
 import { RiCloseFill } from 'react-icons/ri'
 
 const Navbar = () => {
     const [toggleNav, setToggleNav] = useState(false)
-    const [isServicesOpen, setIsServicesOpen] = useState(false)
-    const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
     const location = useLocation()
 
@@ -22,23 +20,12 @@ const Navbar = () => {
     // Close mobile menu on route change
     useEffect(() => {
         setToggleNav(false)
-        setIsMobileServicesOpen(false)
-        setIsServicesOpen(false)
     }, [location.pathname])
 
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'About Us', path: '/about' },
-        {
-            name: 'Services',
-            isDropdown: true,
-            items: [
-                { name: 'Geological Evaluation & Exploration', path: '/services#geological' },
-                { name: 'Resource Modelling & Estimation', path: '/services#resource' },
-                { name: 'Mineral Asset Development', path: '/services#asset' },
-                { name: 'Project Evaluation & Advisory', path: '/services#advisory' },
-            ]
-        },
+        { name: 'Services', path: '/services' },
         { name: 'Commodities', path: '/commodities' },
         { name: 'Social Responsibility', path: '/social-responsibility' },
     ]
@@ -56,7 +43,7 @@ const Navbar = () => {
                 <div className="container mx-auto px-6 xl:px-16 py-2">
                     <div className="flex items-center justify-between">
 
-                        {/* Logo - reduced size */}
+                        {/* Logo - same size */}
                         <Link to="/" className="shrink-0">
                             <img
                                 src="images/logo/logo.png"
@@ -65,63 +52,21 @@ const Navbar = () => {
                             />
                         </Link>
 
-                        {/* Nav links - better spacing */}
+                        {/* Nav links - no dropdown */}
                         <div className="flex items-center gap-2">
-                            {navLinks.map((item) => {
-                                if (item.isDropdown) {
-                                    return (
-                                        <div
-                                            key={item.name}
-                                            className="relative"
-                                            onMouseEnter={() => setIsServicesOpen(true)}
-                                            onMouseLeave={() => setIsServicesOpen(false)}
-                                        >
-                                            <button className={`flex items-center gap-1 cursor-pointer text-base font-semibold py-2 px-4 transition-all duration-200 rounded-lg ${
-                                                location.pathname === '/services'
-                                                    ? 'text-[#764f24] bg-[#764f24]/5'
-                                                    : 'text-gray-700 hover:text-[#764f24] hover:bg-gray-50'
-                                            }`}>
-                                                {item.name}
-                                                <CgChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
-                                            </button>
-
-                                            {isServicesOpen && (
-                                                <div className="absolute top-full left-0 pt-2 z-50 animate-fade-down">
-                                                    <div className="w-80 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
-                                                        <div className="h-0.5 bg-gradient-to-r from-[#764f24] to-[#c89a60]" />
-                                                        <div className="py-2">
-                                                            {item.items.map((sub) => (
-                                                                <Link
-                                                                    key={sub.name}
-                                                                    to={sub.path}
-                                                                    onClick={() => setIsServicesOpen(false)}
-                                                                    className="block px-5 py-3 text-sm text-gray-700 hover:bg-[#764f24]/5 hover:text-[#764f24] transition-colors duration-150 font-medium border-b border-gray-50 last:border-0"
-                                                                >
-                                                                    {sub.name}
-                                                                </Link>
-                                                            ))}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </div>
-                                    )
-                                }
-
-                                return (
-                                    <Link
-                                        key={item.name}
-                                        to={item.path}
-                                        className={`text-base font-semibold py-2 px-4 rounded-lg transition-all duration-200 ${
-                                            isActive(item.path)
-                                                ? 'text-[#764f24] bg-[#764f24]/5'
-                                                : 'text-gray-700 hover:text-[#764f24] hover:bg-gray-50'
-                                        }`}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                )
-                            })}
+                            {navLinks.map((item) => (
+                                <Link
+                                    key={item.name}
+                                    to={item.path}
+                                    className={`text-base font-semibold py-2 px-4 rounded-lg transition-all duration-200 ${
+                                        isActive(item.path)
+                                            ? 'text-[#764f24] bg-[#764f24]/5'
+                                            : 'text-gray-700 hover:text-[#764f24] hover:bg-gray-50'
+                                    }`}
+                                >
+                                    {item.name}
+                                </Link>
+                            ))}
                         </div>
 
                         {/* CTA - using brand color */}
@@ -165,53 +110,20 @@ const Navbar = () => {
                     }`}
                 >
                     <div className="px-4 py-4 space-y-1">
-                        {navLinks.map((item) => {
-                            if (item.isDropdown) {
-                                return (
-                                    <div key={item.name} className="space-y-1">
-                                        <button
-                                            onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                                            className="flex items-center justify-between w-full text-left px-4 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 rounded-lg transition-colors duration-200"
-                                        >
-                                            <span>{item.name}</span>
-                                            <CgChevronDown className={`w-5 h-5 transition-transform duration-200 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
-                                        </button>
-
-                                        <div className={`overflow-hidden transition-all duration-300 ${
-                                            isMobileServicesOpen ? 'max-h-96' : 'max-h-0'
-                                        }`}>
-                                            <div className="ml-4 border-l-2 border-[#764f24]/30 pl-4 space-y-1">
-                                                {item.items.map((sub) => (
-                                                    <Link
-                                                        key={sub.name}
-                                                        to={sub.path}
-                                                        onClick={() => { setToggleNav(false); setIsMobileServicesOpen(false) }}
-                                                        className="block px-4 py-2.5 text-sm text-gray-600 hover:text-[#764f24] hover:bg-gray-50 rounded-lg transition-colors duration-200"
-                                                    >
-                                                        {sub.name}
-                                                    </Link>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
-                            }
-
-                            return (
-                                <Link
-                                    key={item.name}
-                                    to={item.path}
-                                    onClick={() => setToggleNav(false)}
-                                    className={`block px-4 py-3 text-base font-semibold rounded-lg transition-colors duration-200 ${
-                                        isActive(item.path)
-                                            ? 'text-[#764f24] bg-[#764f24]/5'
-                                            : 'text-gray-800 hover:bg-gray-50 hover:text-[#764f24]'
-                                    }`}
-                                >
-                                    {item.name}
-                                </Link>
-                            )
-                        })}
+                        {navLinks.map((item) => (
+                            <Link
+                                key={item.name}
+                                to={item.path}
+                                onClick={() => setToggleNav(false)}
+                                className={`block px-4 py-3 text-base font-semibold rounded-lg transition-colors duration-200 ${
+                                    isActive(item.path)
+                                        ? 'text-[#764f24] bg-[#764f24]/5'
+                                        : 'text-gray-800 hover:bg-gray-50 hover:text-[#764f24]'
+                                }`}
+                            >
+                                {item.name}
+                            </Link>
+                        ))}
 
                         <Link
                             to="/contact"
