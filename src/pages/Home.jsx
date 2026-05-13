@@ -16,6 +16,7 @@ import {
 import { HiOutlineMail } from 'react-icons/hi'
 import HeroImage from '/images/home/geological.jpg'
 import AboutImage from '/images/home/geological1.jpg'
+import Clients from '../components/Clients'
 
 /* ─── DATA ─── */
 
@@ -359,7 +360,7 @@ const Home = () => {
 
 
             {/* ══════════════════════════════════════
-                4. COMMODITIES SECTION — Fixed connectors pointing to all three cards
+                4. COMMODITIES SECTION
             ══════════════════════════════════════ */}
             <div className="bg-white">
                 <div className="px-6 xl:px-16 py-16 lg:py-24">
@@ -408,69 +409,18 @@ const Home = () => {
                                     className="w-full h-[60px]"
                                     preserveAspectRatio="none"
                                 >
-                                    {/* Vertical line down from center of top card */}
-                                    <line 
-                                        x1="400" 
-                                        y1="0" 
-                                        x2="400" 
-                                        y2="20" 
-                                        stroke="#c89a60" 
-                                        strokeWidth="2" 
-                                        strokeOpacity="0.5"
-                                    />
-                                    
-                                    {/* Horizontal line across */}
-                                    <line 
-                                        x1="133" 
-                                        y1="20" 
-                                        x2="667" 
-                                        y2="20" 
-                                        stroke="#c89a60" 
-                                        strokeWidth="2" 
-                                        strokeOpacity="0.5"
-                                    />
-                                    
-                                    {/* Vertical line down to left card */}
-                                    <line 
-                                        x1="133" 
-                                        y1="20" 
-                                        x2="133" 
-                                        y2="45" 
-                                        stroke="#c89a60" 
-                                        strokeWidth="2" 
-                                        strokeOpacity="0.5"
-                                    />
-                                    
-                                    {/* Vertical line down to center card */}
-                                    <line 
-                                        x1="400" 
-                                        y1="20" 
-                                        x2="400" 
-                                        y2="45" 
-                                        stroke="#c89a60" 
-                                        strokeWidth="2" 
-                                        strokeOpacity="0.5"
-                                    />
-                                    
-                                    {/* Vertical line down to right card */}
-                                    <line 
-                                        x1="667" 
-                                        y1="20" 
-                                        x2="667" 
-                                        y2="45" 
-                                        stroke="#c89a60" 
-                                        strokeWidth="2" 
-                                        strokeOpacity="0.5"
-                                    />
-                                    
-                                    {/* Terminal dots at the end of each line */}
+                                    <line x1="400" y1="0" x2="400" y2="20" stroke="#c89a60" strokeWidth="2" strokeOpacity="0.5" />
+                                    <line x1="133" y1="20" x2="667" y2="20" stroke="#c89a60" strokeWidth="2" strokeOpacity="0.5" />
+                                    <line x1="133" y1="20" x2="133" y2="45" stroke="#c89a60" strokeWidth="2" strokeOpacity="0.5" />
+                                    <line x1="400" y1="20" x2="400" y2="45" stroke="#c89a60" strokeWidth="2" strokeOpacity="0.5" />
+                                    <line x1="667" y1="20" x2="667" y2="45" stroke="#c89a60" strokeWidth="2" strokeOpacity="0.5" />
                                     <circle cx="133" cy="48" r="4" fill="#c89a60" fillOpacity="0.3" stroke="#c89a60" strokeWidth="1.5" />
                                     <circle cx="400" cy="48" r="4" fill="#c89a60" fillOpacity="0.3" stroke="#c89a60" strokeWidth="1.5" />
                                     <circle cx="667" cy="48" r="4" fill="#c89a60" fillOpacity="0.3" stroke="#c89a60" strokeWidth="1.5" />
                                 </svg>
                             </div>
 
-                            {/* Cards below - equal height on large screens */}
+                            {/* Cards below */}
                             <div className="w-full mt-2">
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                     {[
@@ -617,7 +567,13 @@ const Home = () => {
 
 
             {/* ══════════════════════════════════════
-                7. WHY CHOOSE GEMAD
+                7. CLIENTS SECTION
+            ══════════════════════════════════════ */}
+            <Clients />
+
+
+            {/* ══════════════════════════════════════
+                8. WHY CHOOSE GEMAD
             ══════════════════════════════════════ */}
             <div className="bg-[#15202a] relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-96 h-96 border border-[#764f24]/8 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -663,7 +619,7 @@ const Home = () => {
 
 
             {/* ══════════════════════════════════════
-                8. ESG STRIP
+                9. ESG STRIP
             ══════════════════════════════════════ */}
             <div className="bg-gradient-to-r from-[#764f24]/10 to-transparent border-y border-[#764f24]/20">
                 <div className="px-6 xl:px-16 py-12">
@@ -696,7 +652,7 @@ const Home = () => {
 
 
             {/* ══════════════════════════════════════
-                9. CONTACT CTA
+                10. CONTACT CTA
             ══════════════════════════════════════ */}
             <div className="relative bg-[#15202a] overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#764f24] via-[#c89a60] to-transparent" />

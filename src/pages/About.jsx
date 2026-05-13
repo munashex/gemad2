@@ -12,9 +12,9 @@ import {
     TbAward,
     TbWorld,
     TbCertificate,
-    TbRocket,
 } from 'react-icons/tb'
 import HeroImage from '/images/about/about-hero.jpg'
+import Clients from '../components/Clients'
 
 const About = () => {
     // Core Values from PDF
@@ -53,9 +53,9 @@ const About = () => {
 
     // Stats from PDF with icons
     const stats = [
-        { value: '3', label: 'Core Commodity Areas', icon: TbWorld, color: 'from-blue-500/20 to-blue-600/10' },
-        { value: '4', label: 'Specialist Service Lines', icon: TbCertificate, color: 'from-emerald-500/20 to-emerald-600/10' },
-        { value: '3', label: 'ISO Certifications', icon: TbAward, color: 'from-amber-500/20 to-amber-600/10' },
+        { value: '3', label: 'Core Commodity Areas', icon: TbWorld },
+        { value: '4', label: 'Specialist Service Lines', icon: TbCertificate },
+        { value: '3', label: 'ISO Certifications', icon: TbAward },
     ]
 
     return (
@@ -149,32 +149,31 @@ const About = () => {
                             </Link>
                         </div>
                           
-                          {/* Right - Modern Stats Cards with slate background */}
-<div>
-    <div className="grid grid-cols-2 gap-5">
-        {stats.map((stat, idx) => (
-            <div
-                key={idx}
-                className={`group relative overflow-hidden bg-slate-50 rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-slate-100`}
-            >
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-slate-100 to-transparent rounded-bl-full" />
-                <div className="relative">
-                    <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 group-hover:bg-[#764f24] transition-all duration-300 shadow-sm">
-                        <stat.icon size={22} className="text-[#764f24] group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    <div className="text-3xl lg:text-4xl font-bold text-[#15202a] mb-1">
-                        {stat.value}{stat.suffix || ''}
-                    </div>
-                    <div className="text-gray-500 text-xs font-medium uppercase tracking-wide">
-                        {stat.label}
-                    </div>
-                </div>
-            </div>
-        ))}
-    </div>
-</div>
+                        {/* Right - Modern Stats Cards with slate background */}
+                        <div>
+                            <div className="grid grid-cols-2 gap-5">
+                                {stats.map((stat, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="group relative overflow-hidden bg-slate-50 rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-slate-100"
+                                    >
+                                        <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-slate-100 to-transparent rounded-bl-full" />
+                                        <div className="relative">
+                                            <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 group-hover:bg-[#764f24] transition-all duration-300 shadow-sm">
+                                                <stat.icon size={22} className="text-[#764f24] group-hover:text-white transition-colors duration-300" />
+                                            </div>
+                                            <div className="text-3xl lg:text-4xl font-bold text-[#15202a] mb-1">
+                                                {stat.value}{stat.suffix || ''}
+                                            </div>
+                                            <div className="text-gray-500 text-xs font-medium uppercase tracking-wide">
+                                                {stat.label}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                         
-                       
                     </div>
                 </div>
             </div>
@@ -268,6 +267,11 @@ const About = () => {
                     </div>
                 </div>
             </div>
+
+            {/* ══════════════════════════════════════
+                CLIENTS SECTION
+            ══════════════════════════════════════ */}
+            <Clients />
 
             {/* ══════════════════════════════════════
                 WHY CHOOSE GEMAD + ISO
