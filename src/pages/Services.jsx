@@ -124,7 +124,7 @@ const services = [
             },
             {
                 Icon: TbCoin,
-                title: 'Mine Financial Evaluation',
+                title: 'Mine Financial Valuation',
                 desc: 'Comprehensive financial analysis of mining projects to assess economic viability, profitability, capital requirements, operating costs, cash flow projections, and investment returns.',
             },
             {
@@ -186,7 +186,7 @@ const softwareTools = [
     { name: 'Leapfrog Geo', category: 'Geological Modelling' },
     { name: 'Leapfrog Edge', category: 'Resource Estimation' },
     { name: 'Deswik', category: 'Mine Planning' },
-    { name: 'ArcGIS', category: 'Spatial Analysis' },
+    { name: 'ArcGIS Pro', category: 'Spatial Analysis' },
 ]
 
 /* ─── SERVICES PAGE ─── */

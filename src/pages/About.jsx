@@ -56,7 +56,6 @@ const About = () => {
         { value: '3', label: 'Core Commodity Areas', icon: TbWorld, color: 'from-blue-500/20 to-blue-600/10' },
         { value: '4', label: 'Specialist Service Lines', icon: TbCertificate, color: 'from-emerald-500/20 to-emerald-600/10' },
         { value: '3', label: 'ISO Certifications', icon: TbAward, color: 'from-amber-500/20 to-amber-600/10' },
-        { value: '100', label: 'SAMREC-Compliant', icon: FaCheckCircle, suffix: '%', color: 'from-[#764f24]/30 to-[#c89a60]/20' },
     ]
 
     return (
@@ -94,7 +93,7 @@ const About = () => {
                         </h1>
                         <p className="text-base md:text-lg text-white/75 leading-relaxed max-w-2xl">
                             Geological Evaluation and Mineral Assets Development — unlocking mineral value 
-                            responsibly and sustainably across South Africa.
+                            responsibly and sustainably across Africa.
                         </p>
                     </div>
                 </div>

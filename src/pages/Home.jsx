@@ -5,6 +5,7 @@ import {
     GiCoalWagon,
     GiCrystalBall,
     GiMineWagon,
+    GiMinerals,
 } from 'react-icons/gi'
 import {
     TbMicroscope,
@@ -46,27 +47,6 @@ const services = [
         description:
             'GEMAD provides strategic technical support and advisory services to investors, mining companies, financial institutions, and mineral project owners seeking informed decision-making and project development support.',
         link: '/services#advisory',
-    },
-]
-
-const commodities = [
-    {
-        Icon: GiCoalWagon,
-        title: 'Coal',
-        tag: 'Energy Resource',
-        desc: 'GEMAD is actively involved in the evaluation and development of coal assets with strong geological and economic potential.',
-    },
-    {
-        Icon: GiCrystalBall,
-        title: 'Rare Earth Elements',
-        tag: 'Future Technologies',
-        desc: 'The company is positioning itself within the growing rare earth sector by targeting strategic projects essential for future technologies and the global energy transition.',
-    },
-    {
-        Icon: GiMineWagon,
-        title: 'Critical Minerals',
-        tag: 'Industrial Growth',
-        desc: 'GEMAD focuses on critical minerals required for industrial growth, renewable energy technologies, and future global supply chains.',
     },
 ]
 
@@ -136,96 +116,115 @@ const whyUs = [
     },
 ]
 
-/* ─── HOME PAGE WITH CLEAN MODERN HERO ─── */
+/* ─── HOME PAGE ─── */
 
 const Home = () => {
     return (
         <>
 
             {/* ══════════════════════════════════════
-                1. HERO — MODERN SPLIT LAYOUT
-                Clean, premium, aligned properly
+                1. HERO — fully responsive, content always fits
             ══════════════════════════════════════ */}
-            <div className="bg-white pt-12 pb-16 lg:pt-20 lg:pb-24">
-                <div className="px-6 xl:px-16">
+            <div className="relative w-full overflow-hidden">
+
+                {/* Background image — covers full hero */}
+                <img
+                    src={HeroImage}
+                    alt="Geological exploration and mineral asset development"
+                    className="absolute inset-0 w-full h-full object-cover object-center"
+                />
+
+                {/* Gradient overlays */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#15202a]/96 via-[#15202a]/80 to-[#15202a]/30" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#15202a]/80 via-[#15202a]/10 to-transparent" />
+
+                {/* Bronze bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#764f24] via-[#c89a60] to-transparent" />
+
+                {/* Content wrapper — py gives breathing room top & bottom */}
+                <div className="relative px-6 xl:px-16 py-16 sm:py-32 lg:py-20">
                     <div className="max-w-7xl mx-auto">
-                        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12 xl:gap-16">
-                            
-                            {/* LEFT COLUMN - Content */}
-                            <div className="flex-1 space-y-6">
-                                {/* Badge */}
-                                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#764f24]/5 rounded-full">
-                                    <span className="w-2 h-2 rounded-full bg-[#764f24] animate-pulse" />
-                                    <span className="text-[#764f24] text-xs font-semibold tracking-wider uppercase">
-                                        South African Mineral Asset Development Entity
-                                    </span>
-                                </div>
+                        <div className="max-w-3xl space-y-6 sm:space-y-8">
 
-                                {/* Heading */}
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#15202a] leading-tight">
-                                    From Discovery to{' '}
-                                    <span className="text-[#764f24]">Bankable</span>{' '}
-                                    Mineral Assets
-                                </h1>
+                            {/* Eyebrow badge */}
+                            <div className="inline-flex items-center gap-2.5 px-4 py-2 border border-[#764f24]/50 bg-[#764f24]/10 backdrop-blur-sm">
+                                <span className="w-2 h-2 rounded-full bg-[#764f24] animate-pulse shrink-0" />
+                                <span className="text-[#c89a60] text-[11px] sm:text-xs font-semibold tracking-[0.18em] uppercase leading-none">
+                                    South African Mineral Asset Development Entity
+                                </span>
+                            </div>
 
-                                {/* Description */}
-                                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                            {/* Main headline */}
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight">
+                                From Discovery to{' '}
+                                <span className="text-[#c89a60]">Bankable</span>
+                                <br />
+                                Mineral Assets
+                            </h1>
+
+                            {/* Client's exact body text */}
+                            <div className="space-y-3 max-w-2xl">
+                                <p className="text-base sm:text-lg text-white/80 leading-relaxed">
                                     GEMAD is a South African mineral asset development entity focused on identifying,
                                     evaluating, and advancing high-potential mineral projects into economically viable
                                     mining operations.
                                 </p>
-                                <p className="text-base sm:text-lg text-gray-500 leading-relaxed">
+                                <p className="text-sm sm:text-base text-white/75 leading-relaxed">
                                     From geological evaluation and exploration to resource definition and development
                                     planning, we transform mineral opportunities into investment-ready assets.
                                 </p>
-
-                                {/* Buttons - in their original position */}
-                                <div className="flex flex-wrap gap-4 pt-4">
-                                    <Link
-                                        to="/services"
-                                        className="inline-flex items-center gap-2 px-8 py-4 bg-[#764f24] hover:bg-[#a06a32] text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg group"
-                                    >
-                                        Explore Our Services
-                                        <FaArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
-                                    </Link>
-                                    <Link
-                                        to="/contact"
-                                        className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#764f24] text-[#764f24] hover:bg-[#764f24] hover:text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 group"
-                                    >
-                                        Contact Us
-                                        <FaArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
-                                    </Link>
-                                </div>
-
-                                {/* Trust indicators */}
-                                <div className="flex flex-wrap gap-5 pt-4 text-sm text-gray-500">
-                                    <span className="flex items-center gap-2">
-                                        <FaCheckCircle size={14} className="text-[#764f24]" />
-                                        ISO Certified
-                                    </span>
-                                    <span className="flex items-center gap-2">
-                                        <FaCheckCircle size={14} className="text-[#764f24]" />
-                                        SAMREC Compliant
-                                    </span>
-                                
-                                </div>
                             </div>
 
-                            {/* RIGHT COLUMN - Image (aligned perfectly with left content) */}
-                            <div className="flex-1 mt-10 lg:mt-0">
-                                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                                    <img
-                                        src={HeroImage}
-                                        alt="Geological exploration and mineral asset development"
-                                        className="w-full h-[350px] sm:h-[400px] lg:h-[600px] object-cover object-center"
-                                    />
-                                    {/* Subtle gradient overlay for depth */}
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-[#15202a]/10 via-transparent to-transparent" />
-                                    {/* Premium corner accents */}
-                                    <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-[#764f24]/40" />
-                                    <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-[#764f24]/40" />
-                                </div>
+                            {/* CTA buttons */}
+                            <div className="flex flex-wrap gap-3 sm:gap-4">
+                                <Link
+                                    to="/services"
+                                    className="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-[#764f24] hover:bg-[#a06a32] text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg group text-sm sm:text-base"
+                                >
+                                    Explore Our Services
+                                    <FaArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-300" />
+                                </Link>
+                                <Link
+                                    to="/contact"
+                                    className="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 border border-white/30 hover:border-[#764f24] bg-white/8 backdrop-blur-sm hover:bg-[#764f24] text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 group text-sm sm:text-base"
+                                >
+                                    Contact Us
+                                    <FaArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-300" />
+                                </Link>
                             </div>
+
+                            {/* Trust indicators */}
+                            <div className="flex flex-wrap gap-4 sm:gap-6">
+                                <span className="flex items-center gap-2 text-sm text-white/60">
+                                    <FaCheckCircle size={13} className="text-[#c89a60] shrink-0" />
+                                    ISO 9001 · 14001 · 45001 Certified
+                                </span>
+                                <span className="flex items-center gap-2 text-sm text-white/60">
+                                    <FaCheckCircle size={13} className="text-[#c89a60] shrink-0" />
+                                    SAMREC Compliant
+                                </span>
+                                <span className="flex items-center gap-2 text-sm text-white/60">
+                                    <FaCheckCircle size={13} className="text-[#c89a60] shrink-0" />
+                                    South African Based
+                                </span>
+                            </div>
+
+                            {/* Quick stats row */}
+                            <div className="pt-2 flex flex-wrap gap-6 sm:gap-10">
+                                {[
+                                    { num: '4', label: 'Service Lines' },
+                                    { num: '4', label: 'Commodities' },
+                                    { num: '3', label: 'ISO Certs' },
+                                ].map((s) => (
+                                    <div key={s.label} className="border-l-2 border-[#764f24] pl-4">
+                                        <div className="text-2xl sm:text-3xl font-bold text-[#c89a60] leading-none mb-1">
+                                            {s.num}
+                                        </div>
+                                        <div className="text-white/45 text-xs sm:text-sm leading-snug">{s.label}</div>
+                                    </div>
+                                ))}
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -241,7 +240,7 @@ const Home = () => {
 
                         <div className="space-y-5 order-2 lg:order-1">
                             <div className="flex items-center gap-2">
-                                <div className="w-10 h-[2px] bg-[#764f24]"></div>
+                                <div className="w-10 h-[2px] bg-[#764f24]" />
                                 <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">About GEMAD</p>
                             </div>
                             <h2 className="text-3xl lg:text-4xl font-bold text-white leading-snug">
@@ -270,7 +269,6 @@ const Home = () => {
                                     { num: '3', label: 'Core Commodity Areas' },
                                     { num: '4', label: 'Specialist Service Lines' },
                                     { num: '3', label: 'ISO Certifications' },
-                                    { num: '100%', label: 'SAMREC-Compliant' },
                                 ].map((s) => (
                                     <div key={s.label} className="border border-[#764f24]/30 bg-white/5 p-4 hover:bg-[#764f24]/10 hover:border-[#764f24]/60 transition-all duration-300 rounded-lg">
                                         <div className="text-2xl font-bold text-[#c89a60] mb-1">{s.num}</div>
@@ -288,20 +286,14 @@ const Home = () => {
                             </Link>
                         </div>
 
-                        <div className="order-1 lg:order-2 relative">
+                        <div className="order-1 lg:order-2">
                             <div className="relative overflow-hidden rounded-xl">
                                 <img
                                     src={AboutImage}
                                     alt="GEMAD geological fieldwork"
                                     className="w-full h-[350px] lg:h-[450px] object-cover object-center"
                                 />
-                                <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-[#764f24]" />
-                                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-[#764f24]" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#15202a]/50 to-transparent" />
-                            </div>
-                            <div className="absolute -bottom-5 -left-5 bg-gradient-to-r from-[#764f24] to-[#a06a32] px-5 py-4 shadow-xl rounded-lg">
-                                <div className="text-white text-xl font-bold leading-none">GEMAD</div>
-                                <div className="text-white/80 text-[10px] tracking-widest uppercase mt-1">Mineral Assets</div>
                             </div>
                         </div>
                     </div>
@@ -317,7 +309,7 @@ const Home = () => {
                     <div className="max-w-7xl mx-auto">
                         <div className="mb-12 text-center lg:text-left">
                             <div className="flex items-center justify-center lg:justify-start gap-2 mb-3">
-                                <div className="w-10 h-[2px] bg-[#764f24]"></div>
+                                <div className="w-10 h-[2px] bg-[#764f24]" />
                                 <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">What We Do</p>
                             </div>
                             <h2 className="text-3xl lg:text-4xl font-bold text-[#15202a] mb-4">Our Services</h2>
@@ -367,50 +359,168 @@ const Home = () => {
 
 
             {/* ══════════════════════════════════════
-                4. COMMODITIES SECTION
+                4. COMMODITIES SECTION — Fixed connectors pointing to all three cards
             ══════════════════════════════════════ */}
             <div className="bg-white">
                 <div className="px-6 xl:px-16 py-16 lg:py-24">
                     <div className="max-w-7xl mx-auto">
+
+                        {/* Header */}
                         <div className="mb-12 text-center">
                             <div className="flex items-center justify-center gap-2 mb-3">
-                                <div className="w-10 h-[2px] bg-[#764f24]"></div>
+                                <div className="w-10 h-[2px] bg-[#764f24]" />
                                 <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">Commodity Focus</p>
-                                <div className="w-10 h-[2px] bg-[#764f24]"></div>
+                                <div className="w-10 h-[2px] bg-[#764f24]" />
                             </div>
                             <h2 className="text-3xl lg:text-4xl font-bold text-[#15202a] mb-4">Our Commodity Portfolio</h2>
                             <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
                                 GEMAD is focused on building a diversified portfolio of high-quality mineral assets,
-                                particularly in coal, rare earth elements, and critical minerals.
+                                spanning critical minerals, rare earth elements, coal, and base metals.
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {commodities.map((c, i) => (
-                                <Link
-                                    to="/commodities"
-                                    key={i}
-                                    className="group relative bg-white border border-gray-100 hover:border-[#764f24]/40 rounded-xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden"
-                                >
-                                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#764f24] to-[#c89a60] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                                    <div className="w-16 h-16 rounded-full bg-[#15202a] flex items-center justify-center mb-6 group-hover:bg-[#764f24] transition-all duration-300 shadow-lg">
-                                        <c.Icon size={28} className="text-[#c89a60] group-hover:text-white transition-colors duration-300" />
-                                    </div>
-                                    <span className="inline-block text-[10px] font-bold tracking-wider uppercase text-[#764f24] bg-[#764f24]/10 px-3 py-1 rounded-full mb-4">
-                                        {c.tag}
+                        {/* Umbrella layout */}
+                        <div className="flex flex-col items-center">
+
+                            {/* Critical Minerals Card */}
+                            <div className="bg-white border border-[#764f24] rounded-2xl px-8 py-8 text-center max-w-2xl w-full shadow-md hover:shadow-xl transition-all duration-300">
+                                <div className="w-16 h-16 rounded-full bg-[#764f24] flex items-center justify-center mx-auto mb-4">
+                                    <GiMineWagon size={32} className="text-white" />
+                                </div>
+                                <div className="inline-block mb-3">
+                                    <span className="text-[10px] font-bold tracking-wider uppercase text-[#764f24] bg-[#764f24]/10 px-3 py-1 rounded-full">
+                                        Strategic Priority
                                     </span>
-                                    <h3 className="text-xl font-bold text-[#15202a] mb-3 group-hover:text-[#764f24] transition-colors duration-200">
-                                        {c.title}
-                                    </h3>
-                                    <p className="text-gray-500 text-sm leading-relaxed mb-6">{c.desc}</p>
-                                    <div className="flex items-center gap-2 text-sm font-bold text-[#764f24] group-hover:gap-3 transition-all duration-200">
-                                        View Details <FaArrowRight size={12} />
-                                    </div>
-                                </Link>
-                            ))}
+                                </div>
+                                <h3 className="text-2xl font-bold text-[#15202a] mb-3">Critical Minerals</h3>
+                                <p className="text-gray-500 text-sm leading-relaxed">
+                                    All commodities within GEMAD's portfolio fall under the broader critical minerals category —
+                                    materials essential to modern technology, energy transition, and national strategic interests.
+                                    GEMAD focuses on critical minerals required for industrial growth, renewable energy technologies,
+                                    and future global supply chains.
+                                </p>
+                            </div>
+
+                            {/* Connector lines - using SVG for precise control */}
+                            <div className="w-full max-w-4xl mx-auto relative flex justify-center">
+                                <svg 
+                                    viewBox="0 0 800 60" 
+                                    className="w-full h-[60px]"
+                                    preserveAspectRatio="none"
+                                >
+                                    {/* Vertical line down from center of top card */}
+                                    <line 
+                                        x1="400" 
+                                        y1="0" 
+                                        x2="400" 
+                                        y2="20" 
+                                        stroke="#c89a60" 
+                                        strokeWidth="2" 
+                                        strokeOpacity="0.5"
+                                    />
+                                    
+                                    {/* Horizontal line across */}
+                                    <line 
+                                        x1="133" 
+                                        y1="20" 
+                                        x2="667" 
+                                        y2="20" 
+                                        stroke="#c89a60" 
+                                        strokeWidth="2" 
+                                        strokeOpacity="0.5"
+                                    />
+                                    
+                                    {/* Vertical line down to left card */}
+                                    <line 
+                                        x1="133" 
+                                        y1="20" 
+                                        x2="133" 
+                                        y2="45" 
+                                        stroke="#c89a60" 
+                                        strokeWidth="2" 
+                                        strokeOpacity="0.5"
+                                    />
+                                    
+                                    {/* Vertical line down to center card */}
+                                    <line 
+                                        x1="400" 
+                                        y1="20" 
+                                        x2="400" 
+                                        y2="45" 
+                                        stroke="#c89a60" 
+                                        strokeWidth="2" 
+                                        strokeOpacity="0.5"
+                                    />
+                                    
+                                    {/* Vertical line down to right card */}
+                                    <line 
+                                        x1="667" 
+                                        y1="20" 
+                                        x2="667" 
+                                        y2="45" 
+                                        stroke="#c89a60" 
+                                        strokeWidth="2" 
+                                        strokeOpacity="0.5"
+                                    />
+                                    
+                                    {/* Terminal dots at the end of each line */}
+                                    <circle cx="133" cy="48" r="4" fill="#c89a60" fillOpacity="0.3" stroke="#c89a60" strokeWidth="1.5" />
+                                    <circle cx="400" cy="48" r="4" fill="#c89a60" fillOpacity="0.3" stroke="#c89a60" strokeWidth="1.5" />
+                                    <circle cx="667" cy="48" r="4" fill="#c89a60" fillOpacity="0.3" stroke="#c89a60" strokeWidth="1.5" />
+                                </svg>
+                            </div>
+
+                            {/* Cards below - equal height on large screens */}
+                            <div className="w-full mt-2">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    {[
+                                        {
+                                            Icon: GiCoalWagon,
+                                            title: 'Coal',
+                                            tag: 'Energy Resource',
+                                            desc: 'GEMAD is actively involved in the evaluation and development of coal assets with strong geological and economic potential.',
+                                        },
+                                        {
+                                            Icon: GiCrystalBall,
+                                            title: 'Rare Earth Elements',
+                                            tag: 'Future Technologies',
+                                            desc: 'The company is positioning itself within the growing rare earth sector by targeting strategic projects essential for future technologies and the global energy transition.',
+                                        },
+                                        {
+                                            Icon: GiMinerals,
+                                            title: 'Base Metals',
+                                            tag: 'Industrial Growth',
+                                            desc: 'GEMAD is engaged in the exploration and evaluation of base metal deposits fundamental to industrial and infrastructure development. The company focuses on copper, zinc, lead, nickel, and manganese.',
+                                        },
+                                    ].map((c, i) => (
+                                        <div key={i} className="flex flex-col items-center h-full">
+                                            <Link
+                                                to="/commodities"
+                                                className="group relative bg-white border border-[#764f24] rounded-xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full flex flex-col h-full"
+                                            >
+                                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#764f24] to-[#c89a60] rounded-t-xl" />
+                                                <div className="flex-1">
+                                                    <div className="w-14 h-14 rounded-full bg-[#764f24] flex items-center justify-center mb-4">
+                                                        <c.Icon size={26} className="text-white" />
+                                                    </div>
+                                                    <span className="inline-block text-[10px] font-bold tracking-wider uppercase text-[#764f24] bg-[#764f24]/10 px-3 py-1 rounded-full mb-3">
+                                                        {c.tag}
+                                                    </span>
+                                                    <h3 className="text-lg font-bold text-[#15202a] mb-2">{c.title}</h3>
+                                                    <p className="text-gray-500 text-sm leading-relaxed">{c.desc}</p>
+                                                </div>
+                                                <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-[#764f24]">
+                                                    View Details <FaArrowRight size={11} />
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
                         </div>
 
-                        <div className="mt-10 text-center">
+                        <div className="mt-12 text-center">
                             <Link
                                 to="/commodities"
                                 className="inline-flex items-center gap-2 px-8 py-4 bg-[#15202a] hover:bg-[#764f24] text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-md group"
@@ -432,7 +542,7 @@ const Home = () => {
                     <div className="max-w-7xl mx-auto">
                         <div className="mb-12 text-center lg:text-left">
                             <div className="flex items-center justify-center lg:justify-start gap-2 mb-3">
-                                <div className="w-10 h-[2px] bg-[#764f24]"></div>
+                                <div className="w-10 h-[2px] bg-[#764f24]" />
                                 <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">Who We Are</p>
                             </div>
                             <h2 className="text-3xl lg:text-4xl font-bold text-white">Vision &amp; Mission</h2>
@@ -475,7 +585,7 @@ const Home = () => {
                     <div className="max-w-7xl mx-auto">
                         <div className="mb-12 text-center lg:text-left">
                             <div className="flex items-center justify-center lg:justify-start gap-2 mb-3">
-                                <div className="w-10 h-[2px] bg-[#764f24]"></div>
+                                <div className="w-10 h-[2px] bg-[#764f24]" />
                                 <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">What Drives Us</p>
                             </div>
                             <h2 className="text-3xl lg:text-4xl font-bold text-[#15202a] mb-4">Our Core Values</h2>
@@ -518,7 +628,7 @@ const Home = () => {
                         <div className="mb-12 lg:flex lg:items-end lg:justify-between">
                             <div>
                                 <div className="flex items-center gap-2 mb-3">
-                                    <div className="w-10 h-[2px] bg-[#764f24]"></div>
+                                    <div className="w-10 h-[2px] bg-[#764f24]" />
                                     <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">Why Partner With Us</p>
                                 </div>
                                 <h2 className="text-3xl lg:text-4xl font-bold text-white">Why Choose GEMAD</h2>
@@ -560,7 +670,7 @@ const Home = () => {
                     <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
                         <div className="max-w-xl text-center lg:text-left">
                             <div className="flex items-center justify-center lg:justify-start gap-2 mb-3">
-                                <div className="w-10 h-[2px] bg-[#764f24]"></div>
+                                <div className="w-10 h-[2px] bg-[#764f24]" />
                                 <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">ESG Commitment</p>
                             </div>
                             <h2 className="text-2xl lg:text-3xl font-bold text-[#15202a] mb-3">
@@ -601,9 +711,9 @@ const Home = () => {
                 <div className="px-6 xl:px-16 py-20 lg:py-28 relative">
                     <div className="max-w-3xl mx-auto text-center space-y-6">
                         <div className="flex items-center justify-center gap-2">
-                            <div className="w-10 h-[2px] bg-[#764f24]"></div>
+                            <div className="w-10 h-[2px] bg-[#764f24]" />
                             <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">Get In Touch</p>
-                            <div className="w-10 h-[2px] bg-[#764f24]"></div>
+                            <div className="w-10 h-[2px] bg-[#764f24]" />
                         </div>
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
                             Ready to Advance Your{' '}
@@ -630,10 +740,10 @@ const Home = () => {
                                 <FaArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-300" />
                             </Link>
                         </div>
-                        
+
                         <div className="pt-6 flex flex-wrap justify-center gap-6 text-white/45 text-sm">
-                            <a 
-                                href="mailto:info@gemad.co.za" 
+                            <a
+                                href="mailto:info@gemad.co.za"
                                 className="hover:text-[#c89a60] transition-colors duration-200 inline-flex items-center gap-2"
                             >
                                 <HiOutlineMail size={16} />

@@ -11,10 +11,11 @@ const Contact = () => {
             title: 'Visit Us',
             description: 'Drop by our office for a face-to-face consultation',
             details: [
-                'Office No.15, Mareu Buildings',
+                'Office No.15',
+                'Mareu Buildings',
                 'No.5 Samuel Road',
-                'Delmas, 2210',
-                'South Africa'
+                'Delmas',
+                '2210'
             ],
             action: { text: 'Get Directions', link: 'https://maps.google.com/?q=Delmas+2210+South+Africa' },
         },
@@ -228,9 +229,13 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <p className="font-bold text-[#15202a] mb-1">GEMAD Head Office</p>
-                                        <p className="text-gray-500 text-sm leading-relaxed">
-                                            Office No.15, Mareu Buildings, No.5 Samuel Road, Delmas, 2210, South Africa
-                                        </p>
+                                        <div className="text-gray-500 text-sm leading-relaxed space-y-0.5">
+                                            <p>Office No.15</p>
+                                            <p>Mareu Buildings</p>
+                                            <p>No.5 Samuel Road</p>
+                                            <p>Delmas</p>
+                                            <p>2210</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
