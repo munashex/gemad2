@@ -313,7 +313,7 @@ const Commodities = () => {
                                                     />
                                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                                                     <div className="absolute top-3 right-3">
-                                                        <span className="inline-block text-[9px] font-bold tracking-wider uppercase text-[#c89a60] bg-[#15202a]/90 backdrop-blur-sm px-2 py-1 rounded-full">
+                                                        <span className="inline-block text-[9px] font-bold tracking-wider uppercase text-white bg-[#15202a]/90 backdrop-blur-sm px-2 py-1 rounded-full">
                                                             {commodity.tag}
                                                         </span>
                                                     </div>
