@@ -16,7 +16,7 @@ const App = () => {
      <Router> 
       <ScrollToTop />
       <Navbar/>
-      <main className="flex-grow">
+      <main className="grow">
         <Routes>
           <Route path="/" element={<Home/>}/> 
           <Route path="/services" element={<Services/>}/> 
