@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { CgMenu } from 'react-icons/cg'
 import { RiCloseFill } from 'react-icons/ri'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const Navbar = () => {
     const [toggleNav, setToggleNav] = useState(false)
@@ -32,6 +33,12 @@ const Navbar = () => {
 
     const isActive = (path) => location.pathname === path
 
+    // Simple animation variants
+    const menuVariants = {
+        hidden: { opacity: 0, y: -20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+    }
+
     return (
         <div className={`sticky top-0 z-50 transition-all duration-300 ${
             scrolled 
@@ -43,7 +50,7 @@ const Navbar = () => {
                 <div className="container mx-auto px-6 xl:px-16 py-2">
                     <div className="flex items-center justify-between">
 
-                        {/* Logo - same size */}
+                        {/* Logo */}
                         <Link to="/" className="shrink-0">
                             <img
                                 src="images/logo/logo.png"
@@ -52,7 +59,7 @@ const Navbar = () => {
                             />
                         </Link>
 
-                        {/* Nav links - no dropdown */}
+                        {/* Nav links */}
                         <div className="flex items-center gap-2">
                             {navLinks.map((item) => (
                                 <Link
@@ -69,7 +76,7 @@ const Navbar = () => {
                             ))}
                         </div>
 
-                        {/* CTA - using brand color */}
+                        {/* CTA */}
                         <Link
                             to="/contact"
                             className="text-base font-semibold px-6 py-2.5 rounded-full bg-[#764f24] text-white hover:bg-[#a06a32] transition-all duration-300 hover:scale-105 shadow-md"
@@ -103,37 +110,43 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                {/* Mobile menu - with animation */}
-                <div 
-                    className={`absolute left-0 right-0 bg-white border-b border-gray-100 z-40 transition-all duration-300 overflow-hidden ${
-                        toggleNav ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
-                    }`}
-                >
-                    <div className="px-4 py-4 space-y-1">
-                        {navLinks.map((item) => (
-                            <Link
-                                key={item.name}
-                                to={item.path}
-                                onClick={() => setToggleNav(false)}
-                                className={`block px-4 py-3 text-base font-semibold rounded-lg transition-colors duration-200 ${
-                                    isActive(item.path)
-                                        ? 'text-[#764f24] bg-[#764f24]/5'
-                                        : 'text-gray-800 hover:bg-gray-50 hover:text-[#764f24]'
-                                }`}
-                            >
-                                {item.name}
-                            </Link>
-                        ))}
-
-                        <Link
-                            to="/contact"
-                            onClick={() => setToggleNav(false)}
-                            className="block text-center mt-4 px-4 py-3 text-base font-semibold rounded-full bg-[#764f24] text-white hover:bg-[#a06a32] transition-all duration-300"
+                {/* Mobile menu - simple fade in/out */}
+                <AnimatePresence>
+                    {toggleNav && (
+                        <motion.div 
+                            className="absolute left-0 right-0 bg-white shadow-lg z-40 border-t border-gray-100"
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                            variants={menuVariants}
                         >
-                            Contact Us
-                        </Link>
-                    </div>
-                </div>
+                            <div className="px-4 py-4 space-y-1">
+                                {navLinks.map((item) => (
+                                    <Link
+                                        key={item.name}
+                                        to={item.path}
+                                        onClick={() => setToggleNav(false)}
+                                        className={`block px-4 py-3 text-base font-semibold rounded-lg transition-colors duration-200 ${
+                                            isActive(item.path)
+                                                ? 'text-[#764f24] bg-[#764f24]/5'
+                                                : 'text-gray-800 hover:bg-gray-50 hover:text-[#764f24]'
+                                        }`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                ))}
+
+                                <Link
+                                    to="/contact"
+                                    onClick={() => setToggleNav(false)}
+                                    className="block text-center mt-4 px-4 py-3 text-base font-semibold rounded-full bg-[#764f24] text-white hover:bg-[#a06a32] transition-all duration-300"
+                                >
+                                    Contact Us
+                                </Link>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </div>
     )

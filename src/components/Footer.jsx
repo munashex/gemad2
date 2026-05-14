@@ -15,10 +15,10 @@ const Footer = () => {
     ]
 
     const servicesLinks = [
-        { name: 'Geological Evaluation & Exploration', path: '/services#geological' },
-        { name: 'Resource Modelling & Estimation', path: '/services#resource' },
-        { name: 'Mineral Asset Development', path: '/services#asset' },
-        { name: 'Project Evaluation & Advisory', path: '/services#advisory' },
+        { name: 'Geological Evaluation & Exploration', path: '/services' },
+        { name: 'Resource Modelling & Estimation', path: '/services' },
+        { name: 'Mineral Asset Development', path: '/services' },
+        { name: 'Project Evaluation & Advisory', path: '/services' },
     ]
 
     const contactInfo = {

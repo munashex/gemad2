@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaCheckCircle } from 'react-icons/fa'
 import { MdVerified } from 'react-icons/md'
+import { motion, useAnimation, useInView } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 import {
     TbMicroscope,
     TbChartLine,
@@ -22,6 +24,42 @@ import {
 import { GiDrill, GiMining, GiMineTruck } from 'react-icons/gi'
 import GetInTouch from '../components/GetInTouch'
 import HeroImage from '/images/services/services-hero.jpg'
+
+// Scroll animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+}
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
+}
+
+// ScrollReveal component
+const ScrollReveal = ({ children, delay = 0 }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const controls = useAnimation()
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible")
+    }
+  }, [isInView, controls])
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={fadeInUp}
+      transition={{ delay }}
+    >
+      {children}
+    </motion.div>
+  )
+}
 
 /* ─── DATA — client's exact text from PDF ─── */
 
@@ -53,7 +91,7 @@ const services = [
             {
                 Icon: GiDrill,
                 title: 'Exploration Drilling',
-                desc: 'Execution and supervision of core drilling and RC drilling programs to obtain subsurface geological information, define mineralized zones, and collect representative geological samples for analysis.',
+                desc: 'Execution and supervision of core drilling programs to obtain geological information, define mineralized zones, and collect representative geological samples for analysis.',
             },
             {
                 Icon: TbTestPipe,
@@ -192,11 +230,44 @@ const softwareTools = [
 /* ─── SERVICES PAGE ─── */
 
 const Services = () => {
+    const [letterColors, setLetterColors] = useState({})
+    const [startLetterAnimation, setStartLetterAnimation] = useState(false)
+    const word = "Services"
+    const targetColor = "#c89a60"
+
+    // Start letter animation after heading fade from left is complete
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setStartLetterAnimation(true)
+        }, 1200)
+
+        return () => clearTimeout(timer)
+    }, [])
+
+    // Letter-by-letter color change animation
+    useEffect(() => {
+        if (!startLetterAnimation) return
+
+        const letters = word.split('')
+        letters.forEach((_, index) => {
+            setTimeout(() => {
+                setLetterColors(prev => ({
+                    ...prev,
+                    [index]: targetColor
+                }))
+            }, index * 200)
+        })
+    }, [startLetterAnimation])
+
+    const getLetterColor = (index) => {
+        return letterColors[index] || "#ffffff"
+    }
+
     return (
         <>
 
             {/* ══════════════════════════════════════
-                HERO
+                HERO — with fade from left and letter animation
             ══════════════════════════════════════ */}
             <div className="relative w-full h-[55vh] min-h-[420px]">
                 <img
@@ -210,60 +281,98 @@ const Services = () => {
 
                 <div className="relative h-full flex items-center px-6 xl:px-16">
                     <div className="max-w-3xl space-y-5">
-                        <div className="flex items-center gap-2 text-white/50 text-sm">
+                        {/* Breadcrumb - fade from left */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="flex items-center gap-2 text-white/50 text-sm"
+                        >
                             <Link to="/" className="hover:text-[#c89a60] transition-colors duration-200">Home</Link>
                             <span>/</span>
                             <span className="text-[#c89a60]">Services</span>
-                        </div>
+                        </motion.div>
 
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-[#764f24]/60 bg-[#764f24]/10 backdrop-blur-sm">
+                        {/* Badge - fade from left */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: 0.4 }}
+                            className="inline-flex items-center gap-2 px-4 py-1.5 border border-[#764f24]/60 bg-[#764f24]/10 backdrop-blur-sm"
+                        >
                             <span className="w-2 h-2 rounded-full bg-[#764f24] animate-pulse" />
                             <span className="text-[#c89a60] text-xs font-semibold tracking-[0.2em] uppercase">
                                 Technical Services
                             </span>
-                        </div>
+                        </motion.div>
 
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                            Our <span className="text-[#c89a60]">Services</span>
-                        </h1>
-                        <p className="text-base md:text-lg text-white/75 leading-relaxed max-w-2xl">
+                        {/* Main headline - fade from left with letter animation */}
+                        <motion.h1 
+                            initial={{ opacity: 0, x: -60 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.6 }}
+                            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+                        >
+                            Our{' '}
+                            <span className="inline-block">
+                                {word.split('').map((letter, idx) => (
+                                    <span
+                                        key={idx}
+                                        style={{ color: getLetterColor(idx) }}
+                                        className="inline-block transition-colors duration-300"
+                                    >
+                                        {letter}
+                                    </span>
+                                ))}
+                            </span>
+                        </motion.h1>
+
+                        {/* Description - fade from left */}
+                        <motion.p 
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 0.8 }}
+                            className="text-base md:text-lg text-white/75 leading-relaxed max-w-2xl"
+                        >
                             GEMAD provides the full spectrum of technical and project development services
                             required to unlock mineral value responsibly and sustainably — from grassroots
                             exploration through to bankable feasibility studies and investment advisory.
-                        </p>
+                        </motion.p>
                     </div>
                 </div>
             </div>
 
 
             {/* ══════════════════════════════════════
-                SERVICES OVERVIEW STRIP
+                SERVICES OVERVIEW STRIP — scroll reveal
             ══════════════════════════════════════ */}
-            <div className="bg-[#15202a] py-10 px-6 xl:px-16 border-b border-white/5">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {services.map((s) => (
-                            <a
-                                key={s.id}
-                                href={`#${s.id}`}
-                                className="group flex items-center gap-3 p-4 border border-white/10 hover:border-[#764f24]/60 hover:bg-[#764f24]/10 transition-all duration-300 rounded-lg"
-                            >
-                                <div className="w-9 h-9 bg-[#764f24]/20 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-[#764f24] transition-colors duration-300">
-                                    <s.Icon size={18} className="text-[#c89a60] group-hover:text-white transition-colors duration-300" />
-                                </div>
-                                <div>
-                                    <div className="text-[10px] font-bold text-[#764f24] mb-0.5">{s.number}</div>
-                                    <div className="text-white text-xs font-semibold leading-snug line-clamp-2">{s.title}</div>
-                                </div>
-                            </a>
-                        ))}
+            <ScrollReveal>
+                <div className="bg-[#15202a] py-10 px-6 xl:px-16 border-b border-white/5">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            {services.map((s) => (
+                                <a
+                                    key={s.id}
+                                    href={`#${s.id}`}
+                                    className="group flex items-center gap-3 p-4 border border-white/10 hover:border-[#764f24]/60 hover:bg-[#764f24]/10 transition-all duration-300 rounded-lg"
+                                >
+                                    <div className="w-9 h-9 bg-[#764f24]/20 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-[#764f24] transition-colors duration-300">
+                                        <s.Icon size={18} className="text-[#c89a60] group-hover:text-white transition-colors duration-300" />
+                                    </div>
+                                    <div>
+                                        <div className="text-[10px] font-bold text-[#764f24] mb-0.5">{s.number}</div>
+                                        <div className="text-white text-xs font-semibold leading-snug line-clamp-2">{s.title}</div>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </ScrollReveal>
 
 
             {/* ══════════════════════════════════════
-                EACH SERVICE SECTION
+                EACH SERVICE SECTION — with scroll reveal
             ══════════════════════════════════════ */}
             {services.map((service, serviceIndex) => (
                 <div
@@ -275,40 +384,44 @@ const Services = () => {
                         <div className="max-w-7xl mx-auto">
 
                             <div className="mb-14 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                                <div>
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <div className="w-10 h-[2px] bg-[#764f24]" />
-                                        <span className="text-[#764f24] text-xs font-bold tracking-[0.25em] uppercase">
-                                            Service {service.number}
-                                        </span>
-                                    </div>
-
-                                    <div className="flex items-start gap-5 mb-5">
-                                        <div className="w-14 h-14 bg-[#15202a] rounded-xl flex items-center justify-center shrink-0 shadow-lg">
-                                            <service.Icon size={26} className="text-[#c89a60]" />
+                                <ScrollReveal>
+                                    <div>
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="w-10 h-[2px] bg-[#764f24]" />
+                                            <span className="text-[#764f24] text-xs font-bold tracking-[0.25em] uppercase">
+                                                Service {service.number}
+                                            </span>
                                         </div>
-                                        <div>
-                                            <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-[#15202a] leading-tight">
-                                                {service.title}
-                                            </h2>
-                                            <p className="text-[#764f24] font-medium mt-1 text-sm">{service.tagline}</p>
+
+                                        <div className="flex items-start gap-5 mb-5">
+                                            <div className="w-14 h-14 bg-[#15202a] rounded-xl flex items-center justify-center shrink-0 shadow-lg">
+                                                <service.Icon size={26} className="text-[#c89a60]" />
+                                            </div>
+                                            <div>
+                                                <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-[#15202a] leading-tight">
+                                                    {service.title}
+                                                </h2>
+                                                <p className="text-[#764f24] font-medium mt-1 text-sm">{service.tagline}</p>
+                                            </div>
                                         </div>
+
+                                        <p className="text-gray-700 leading-relaxed text-base">{service.intro}</p>
                                     </div>
+                                </ScrollReveal>
 
-                                    <p className="text-gray-700 leading-relaxed text-base">{service.intro}</p>
-                                </div>
+                                <ScrollReveal>
+                                    <div className="lg:pt-8 border-l-0 lg:border-l border-[#764f24]/20 lg:pl-8">
+                                        <p className="text-gray-600 leading-relaxed text-sm">{service.body}</p>
 
-                                <div className="lg:pt-8 border-l-0 lg:border-l border-[#764f24]/20 lg:pl-8">
-                                    <p className="text-gray-600 leading-relaxed text-sm">{service.body}</p>
-
-                                    <Link
-                                        to="/contact"
-                                        className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-[#15202a] hover:bg-[#764f24] text-white text-sm font-semibold rounded-full transition-all duration-300 hover:scale-105 group"
-                                    >
-                                        Enquire About This Service
-                                        <FaArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" />
-                                    </Link>
-                                </div>
+                                        <Link
+                                            to="/contact"
+                                            className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-[#15202a] hover:bg-[#764f24] text-white text-sm font-semibold rounded-full transition-all duration-300 hover:scale-105 group"
+                                        >
+                                            Enquire About This Service
+                                            <FaArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" />
+                                        </Link>
+                                    </div>
+                                </ScrollReveal>
                             </div>
 
                             <div>
@@ -319,8 +432,12 @@ const Services = () => {
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                                     {service.subServices.map((sub, i) => (
-                                        <div
+                                        <motion.div
                                             key={i}
+                                            initial={{ opacity: 0, y: 30 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.5, delay: i * 0.1 }}
+                                            viewport={{ once: true }}
                                             className="group bg-white border border-gray-100 hover:border-[#764f24]/40 rounded-xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
                                         >
                                             <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#764f24] to-[#c89a60] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-t-xl" />
@@ -333,7 +450,7 @@ const Services = () => {
                                                 {sub.title}
                                             </h4>
                                             <p className="text-gray-500 text-sm leading-relaxed">{sub.desc}</p>
-                                        </div>
+                                        </motion.div>
                                     ))}
                                 </div>
                             </div>
@@ -348,127 +465,133 @@ const Services = () => {
 
 
             {/* ══════════════════════════════════════
-                WHY CHOOSE US + SOFTWARE STRIP
+                WHY CHOOSE US + SOFTWARE STRIP — scroll reveal
             ══════════════════════════════════════ */}
-            <div className="bg-[#15202a] px-6 xl:px-16 py-20 lg:py-24">
-                <div className="max-w-7xl mx-auto">
+            <ScrollReveal>
+                <div className="bg-[#15202a] px-6 xl:px-16 py-20 lg:py-24">
+                    <div className="max-w-7xl mx-auto">
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-                        <div>
-                            <div className="flex items-center gap-2 mb-4">
-                                <div className="w-10 h-[2px] bg-[#764f24]" />
-                                <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">Why Partner With Us</p>
-                            </div>
-                            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-8">Why Choose GEMAD</h2>
+                            <div>
+                                <div className="flex items-center gap-2 mb-4">
+                                    <div className="w-10 h-[2px] bg-[#764f24]" />
+                                    <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">Why Partner With Us</p>
+                                </div>
+                                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-8">Why Choose GEMAD</h2>
 
-                            <div className="space-y-4">
-                                {[
-                                    'Integrated Geology-Mining Solutions combining exploration, modelling, mine planning, and project development in one seamless workflow.',
-                                    'SAMREC-Compliant Reporting — transparent, accurate mineral resource reporting adhering to industry-recognised standards and best practices.',
-                                    'Experienced Technical Team of geologists, mining engineers, exploration specialists, and field professionals.',
-                                    'Converting Resources into Bankable Mineral Assets — from early-stage exploration to technically sound, investment-ready assets.',
-                                    'ISO-Certified Operational Standards — ISO 9001:2015, ISO 14001:2015, and ISO 45001:2018.',
-                                ].map((item, i) => (
-                                    <div key={i} className="flex items-start gap-3 group">
-                                        <MdVerified size={18} className="text-[#764f24] mt-0.5 shrink-0 group-hover:text-[#c89a60] transition-colors duration-200" />
-                                        <p className="text-white/65 text-sm leading-relaxed">{item}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className="flex items-center gap-2 mb-4">
-                                <div className="w-10 h-[2px] bg-[#764f24]" />
-                                <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">Technical Software</p>
-                            </div>
-                            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">Advanced Technical Software</h2>
-                            <p className="text-white/60 text-sm leading-relaxed mb-8">
-                                GEMAD utilizes advanced industry software and technologies to enable accurate geological
-                                interpretation, resource modelling, mine planning, and project optimization.
-                            </p>
-
-                            <div className="grid grid-cols-2 gap-4 mb-8">
-                                {softwareTools.map((tool) => (
-                                    <div
-                                        key={tool.name}
-                                        className="border border-[#764f24]/30 bg-white/5 p-5 hover:bg-[#764f24]/10 hover:border-[#764f24]/60 transition-all duration-300 rounded-lg"
-                                    >
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <FaCheckCircle size={12} className="text-[#764f24] shrink-0" />
-                                            <div className="text-white font-bold text-sm">{tool.name}</div>
+                                <div className="space-y-4">
+                                    {[
+                                        'Integrated Geology-Mining Solutions combining exploration, modelling, mine planning, and project development in one seamless workflow.',
+                                        'SAMREC-Compliant Reporting — transparent, accurate mineral resource reporting adhering to industry-recognised standards and best practices.',
+                                        'Experienced Technical Team of geologists, mining engineers, exploration specialists, and field professionals.',
+                                        'Converting Resources into Bankable Mineral Assets — from early-stage exploration to technically sound, investment-ready assets.',
+                                        'ISO-Certified Operational Standards — ISO 9001:2015, ISO 14001:2015, and ISO 45001:2018.',
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex items-start gap-3 group">
+                                            <MdVerified size={18} className="text-[#764f24] mt-0.5 shrink-0 group-hover:text-[#c89a60] transition-colors duration-200" />
+                                            <p className="text-white/65 text-sm leading-relaxed">{item}</p>
                                         </div>
-                                        <div className="text-white/45 text-xs pl-5">{tool.category}</div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div className="border border-[#764f24]/30 bg-white/5 p-5 rounded-lg">
-                                <p className="text-white/60 text-xs uppercase tracking-wider font-semibold mb-3">ISO Certified Standards</p>
-                                <div className="flex flex-wrap gap-2">
-                                    {['ISO 9001:2015', 'ISO 14001:2015', 'ISO 45001:2018'].map((iso) => (
-                                        <span
-                                            key={iso}
-                                            className="px-3 py-1.5 bg-[#764f24]/20 border border-[#764f24]/40 text-[#c89a60] text-xs font-bold rounded-full"
-                                        >
-                                            {iso}
-                                        </span>
                                     ))}
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-
-            {/* ══════════════════════════════════════
-                OTHER PAGES REDIRECT STRIP
-            ══════════════════════════════════════ */}
-            <div className="bg-gray-50 px-6 xl:px-16 py-16">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-10">
-                        <div className="flex items-center justify-center gap-2 mb-3">
-                            <div className="w-10 h-[2px] bg-[#764f24]" />
-                            <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">Explore More</p>
-                            <div className="w-10 h-[2px] bg-[#764f24]" />
-                        </div>
-                        <h2 className="text-2xl lg:text-3xl font-bold text-[#15202a]">Explore Other Areas</h2>
-                        <p className="text-gray-500 text-sm mt-2 max-w-xl mx-auto">
-                            Learn more about GEMAD's commodity focus, ESG commitment, and who we are.
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                        {[
-                            { title: 'About Us', desc: 'Our story, vision, mission, and the values that drive everything we do.', path: '/about', label: 'Learn About Us' },
-                            { title: 'Commodities', desc: 'Coal, rare earth elements, and critical minerals — our commodity portfolio.', path: '/commodities', label: 'View Commodities' },
-                            { title: 'Social Responsibility', desc: 'Our ESG commitment, community development, and ISO certifications.', path: '/social-responsibility', label: 'Our ESG Approach' },
-                            { title: 'Contact Us', desc: 'Ready to advance your mineral project? Get in touch with our team.', path: '/contact', label: 'Get In Touch' },
-                        ].map((card) => (
-                            <Link
-                                key={card.path}
-                                to={card.path}
-                                className="group bg-white border border-gray-100 hover:border-[#764f24]/40 rounded-xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
-                            >
-                                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#764f24] to-[#c89a60] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-t-xl" />
-                                <h3 className="font-bold text-[#15202a] text-base mb-2 group-hover:text-[#764f24] transition-colors duration-200">{card.title}</h3>
-                                <p className="text-gray-500 text-sm leading-relaxed mb-5">{card.desc}</p>
-                                <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#764f24] group-hover:gap-2.5 transition-all duration-200">
-                                    {card.label} <FaArrowRight size={11} />
+                            <div>
+                                <div className="flex items-center gap-2 mb-4">
+                                    <div className="w-10 h-[2px] bg-[#764f24]" />
+                                    <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">Technical Software</p>
                                 </div>
-                            </Link>
-                        ))}
+                                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">Advanced Technical Software</h2>
+                                <p className="text-white/60 text-sm leading-relaxed mb-8">
+                                    GEMAD utilizes advanced industry software and technologies to enable accurate geological
+                                    interpretation, resource modelling, mine planning, and project optimization.
+                                </p>
+
+                                <div className="grid grid-cols-2 gap-4 mb-8">
+                                    {softwareTools.map((tool) => (
+                                        <div
+                                            key={tool.name}
+                                            className="border border-[#764f24]/30 bg-white/5 p-5 hover:bg-[#764f24]/10 hover:border-[#764f24]/60 transition-all duration-300 rounded-lg"
+                                        >
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <FaCheckCircle size={12} className="text-[#764f24] shrink-0" />
+                                                <div className="text-white font-bold text-sm">{tool.name}</div>
+                                            </div>
+                                            <div className="text-white/45 text-xs pl-5">{tool.category}</div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="border border-[#764f24]/30 bg-white/5 p-5 rounded-lg">
+                                    <p className="text-white/60 text-xs uppercase tracking-wider font-semibold mb-3">ISO Certified Standards</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {['ISO 9001:2015', 'ISO 14001:2015', 'ISO 45001:2018'].map((iso) => (
+                                            <span
+                                                key={iso}
+                                                className="px-3 py-1.5 bg-[#764f24]/20 border border-[#764f24]/40 text-[#c89a60] text-xs font-bold rounded-full"
+                                            >
+                                                {iso}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </ScrollReveal>
 
 
             {/* ══════════════════════════════════════
-                GET IN TOUCH
+                OTHER PAGES REDIRECT STRIP — scroll reveal
             ══════════════════════════════════════ */}
-            <GetInTouch />
+            <ScrollReveal>
+                <div className="bg-gray-50 px-6 xl:px-16 py-16">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-10">
+                            <div className="flex items-center justify-center gap-2 mb-3">
+                                <div className="w-10 h-[2px] bg-[#764f24]" />
+                                <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">Explore More</p>
+                                <div className="w-10 h-[2px] bg-[#764f24]" />
+                            </div>
+                            <h2 className="text-2xl lg:text-3xl font-bold text-[#15202a]">Explore Other Areas</h2>
+                            <p className="text-gray-500 text-sm mt-2 max-w-xl mx-auto">
+                                Learn more about GEMAD's commodity focus, ESG commitment, and who we are.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                            {[
+                                { title: 'About Us', desc: 'Our story, vision, mission, and the values that drive everything we do.', path: '/about', label: 'Learn About Us' },
+                                { title: 'Commodities', desc: 'Coal, rare earth elements, and critical minerals — our commodity portfolio.', path: '/commodities', label: 'View Commodities' },
+                                { title: 'Social Responsibility', desc: 'Our ESG commitment, community development, and ISO certifications.', path: '/social-responsibility', label: 'Our ESG Approach' },
+                                { title: 'Contact Us', desc: 'Ready to advance your mineral project? Get in touch with our team.', path: '/contact', label: 'Get In Touch' },
+                            ].map((card) => (
+                                <Link
+                                    key={card.path}
+                                    to={card.path}
+                                    className="group bg-white border border-gray-100 hover:border-[#764f24]/40 rounded-xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
+                                >
+                                    <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#764f24] to-[#c89a60] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-t-xl" />
+                                    <h3 className="font-bold text-[#15202a] text-base mb-2 group-hover:text-[#764f24] transition-colors duration-200">{card.title}</h3>
+                                    <p className="text-gray-500 text-sm leading-relaxed mb-5">{card.desc}</p>
+                                    <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#764f24] group-hover:gap-2.5 transition-all duration-200">
+                                        {card.label} <FaArrowRight size={11} />
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </ScrollReveal>
+
+
+            {/* ══════════════════════════════════════
+                GET IN TOUCH — scroll reveal
+            ══════════════════════════════════════ */}
+            <ScrollReveal>
+                <GetInTouch />
+            </ScrollReveal>
 
         </>
     )

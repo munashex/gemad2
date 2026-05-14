@@ -169,18 +169,16 @@ const Home = () => {
         return () => clearInterval(interval)
     }, [heroImages.length])
 
-    // Start letter animation after heading fade is complete + 1 second delay
+    // Start letter animation after heading fade is complete
     useEffect(() => {
-        // Heading fade animation takes 0.8s + 0.4s delay = 1.2s total
-        // Then wait 1 second = start at 2.2s
         const timer = setTimeout(() => {
             setStartLetterAnimation(true)
-        }, 1000) // 0.8s fade + 0.4s delay + 1s wait = 2.2s
+        }, 1000)
 
         return () => clearTimeout(timer)
     }, [])
 
-    // Letter-by-letter color change animation - slower (200ms per letter)
+    // Letter-by-letter color change animation
     useEffect(() => {
         if (!startLetterAnimation) return
 
@@ -191,7 +189,7 @@ const Home = () => {
                     ...prev,
                     [index]: targetColor
                 }))
-            }, index * 200) // 200ms delay between each letter (slower)
+            }, index * 200)
         })
     }, [startLetterAnimation])
 
@@ -249,7 +247,7 @@ const Home = () => {
                                 </span>
                             </motion.div>
 
-                            {/* Main headline - fade from left (0.8s) */}
+                            {/* Main headline - fade from left */}
                             <motion.h1 
                                 initial={{ opacity: 0, x: -60 }}
                                 animate={{ opacity: 1, x: 0 }}
@@ -496,7 +494,7 @@ const Home = () => {
 
 
             {/* ══════════════════════════════════════
-                4. COMMODITIES SECTION
+                4. COMMODITIES SECTION - Updated Critical Minerals card design
             ══════════════════════════════════════ */}
             <ScrollReveal>
                 <div className="bg-white">
@@ -516,24 +514,36 @@ const Home = () => {
                             </div>
 
                             <div className="flex flex-col items-center">
-                                <div className="bg-white border border-[#764f24] rounded-2xl px-8 py-8 text-center max-w-2xl w-full shadow-md hover:shadow-xl transition-all duration-300">
-                                    <div className="w-16 h-16 rounded-full bg-[#764f24] flex items-center justify-center mx-auto mb-4">
-                                        <GiMineWagon size={32} className="text-white" />
+                                {/* Critical Minerals Card - New white design like Commodities page */}
+                                <div className="max-w-2xl mx-auto w-full mb-8">
+                                    <div className="group bg-white rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-gray-100 hover:border-[#764f24]/30 relative overflow-hidden">
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#764f24]/5 to-transparent rounded-bl-full" />
+                                        <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                                            <div className="w-20 h-20 rounded-xl bg-[#764f24] flex items-center justify-center shrink-0 shadow-lg">
+                                                <GiMineWagon size={40} className="text-white" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <div className="inline-block mb-2">
+                                                    <span className="text-[10px] font-bold tracking-wider uppercase text-[#764f24] bg-[#764f24]/10 px-3 py-1 rounded-full">
+                                                        Strategic Priority
+                                                    </span>
+                                                </div>
+                                                <h3 className="text-2xl font-bold text-[#15202a] mb-2 group-hover:text-[#764f24] transition-colors duration-300">
+                                                    Critical Minerals
+                                                </h3>
+                                                <p className="text-gray-500 text-sm leading-relaxed">
+                                                    All commodities within GEMAD's portfolio fall under the broader critical minerals category —
+                                                    materials essential to modern technology, energy transition, and national strategic interests.
+                                                    GEMAD focuses on critical minerals required for industrial growth, renewable energy technologies,
+                                                    and future global supply chains.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="mt-4 w-12 h-[2px] bg-[#764f24]/20 group-hover:w-20 transition-all duration-300" />
                                     </div>
-                                    <div className="inline-block mb-3">
-                                        <span className="text-[10px] font-bold tracking-wider uppercase text-[#764f24] bg-[#764f24]/10 px-3 py-1 rounded-full">
-                                            Strategic Priority
-                                        </span>
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-[#15202a] mb-3">Critical Minerals</h3>
-                                    <p className="text-gray-500 text-sm leading-relaxed">
-                                        All commodities within GEMAD's portfolio fall under the broader critical minerals category —
-                                        materials essential to modern technology, energy transition, and national strategic interests.
-                                        GEMAD focuses on critical minerals required for industrial growth, renewable energy technologies,
-                                        and future global supply chains.
-                                    </p>
                                 </div>
 
+                                {/* Connector lines */}
                                 <div className="w-full max-w-4xl mx-auto relative flex justify-center">
                                     <svg viewBox="0 0 800 60" className="w-full h-[60px]" preserveAspectRatio="none">
                                         <line x1="400" y1="0" x2="400" y2="20" stroke="#c89a60" strokeWidth="2" strokeOpacity="0.5" />
@@ -547,6 +557,7 @@ const Home = () => {
                                     </svg>
                                 </div>
 
+                                {/* Other commodities cards */}
                                 <div className="w-full mt-2">
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                         {[
