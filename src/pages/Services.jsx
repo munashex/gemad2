@@ -25,6 +25,11 @@ import { GiDrill, GiMining, GiMineTruck } from 'react-icons/gi'
 import GetInTouch from '../components/GetInTouch'
 import HeroImage from '/images/services/services-hero.jpg'
 
+// Geological Exploration Images
+import GeoExploration1 from '/images/services/geo-exploration-1.jpg'
+import GeoExploration2 from '/images/services/geo-exploration-2.jpg'
+import GeoExploration3 from '/images/services/geo-exploration-3.jpg'
+
 // Scroll animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -227,6 +232,13 @@ const softwareTools = [
     { name: 'ArcGIS Pro', category: 'Spatial Analysis' },
 ]
 
+// Geological exploration images
+const geoExplorationImages = [
+    { id: 1, image: GeoExploration1, name: 'Geological Exploration 1' },
+    { id: 2, image: GeoExploration2, name: 'Geological Exploration 2' },
+    { id: 3, image: GeoExploration3, name: 'Geological Exploration 3' },
+]
+
 /* ─── SERVICES PAGE ─── */
 
 const Services = () => {
@@ -266,9 +278,7 @@ const Services = () => {
     return (
         <>
 
-            {/* ══════════════════════════════════════
-                HERO — with fade from left and letter animation
-            ══════════════════════════════════════ */}
+            {/* HERO — with fade from left and letter animation */}
             <div className="relative w-full h-[55vh] min-h-[420px]">
                 <img
                     src={HeroImage}
@@ -342,10 +352,7 @@ const Services = () => {
                 </div>
             </div>
 
-
-            {/* ══════════════════════════════════════
-                SERVICES OVERVIEW STRIP — scroll reveal
-            ══════════════════════════════════════ */}
+            {/* SERVICES OVERVIEW STRIP — scroll reveal */}
             <ScrollReveal>
                 <div className="bg-[#15202a] py-10 px-6 xl:px-16 border-b border-white/5">
                     <div className="max-w-7xl mx-auto">
@@ -370,10 +377,7 @@ const Services = () => {
                 </div>
             </ScrollReveal>
 
-
-            {/* ══════════════════════════════════════
-                EACH SERVICE SECTION — with scroll reveal
-            ══════════════════════════════════════ */}
+            {/* EACH SERVICE SECTION — with scroll reveal */}
             {services.map((service, serviceIndex) => (
                 <div
                     key={service.id}
@@ -424,6 +428,37 @@ const Services = () => {
                                 </ScrollReveal>
                             </div>
 
+                            {/* Geological Exploration Image Gallery - only for first service */}
+                            {service.id === 'geological' && (
+                                <div className="mb-10">
+                                    <h3 className="text-sm font-bold text-gray-400 tracking-[0.2em] uppercase mb-6 flex items-center gap-3">
+                                        <span>Field Work Gallery</span>
+                                        <div className="flex-1 h-[1px] bg-gray-200" />
+                                    </h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                                        {geoExplorationImages.map((img, idx) => (
+                                            <motion.div
+                                                key={img.id}
+                                                initial={{ opacity: 0, scale: 0.95 }}
+                                                whileInView={{ opacity: 1, scale: 1 }}
+                                                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                                                viewport={{ once: true }}
+                                                className="group overflow-hidden rounded-xl bg-gray-100 shadow-md hover:shadow-xl transition-all duration-300"
+                                            >
+                                                <div className="relative aspect-video overflow-hidden">
+                                                    <img
+                                                        src={img.image}
+                                                        alt={img.name}
+                                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                    />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                                </div>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
                             <div>
                                 <h3 className="text-sm font-bold text-gray-400 tracking-[0.2em] uppercase mb-6 flex items-center gap-3">
                                     <span>Services Include</span>
@@ -463,10 +498,7 @@ const Services = () => {
                 </div>
             ))}
 
-
-            {/* ══════════════════════════════════════
-                WHY CHOOSE US + SOFTWARE STRIP — scroll reveal
-            ══════════════════════════════════════ */}
+            {/* WHY CHOOSE US + SOFTWARE STRIP — scroll reveal */}
             <ScrollReveal>
                 <div className="bg-[#15202a] px-6 xl:px-16 py-20 lg:py-24">
                     <div className="max-w-7xl mx-auto">
@@ -541,10 +573,7 @@ const Services = () => {
                 </div>
             </ScrollReveal>
 
-
-            {/* ══════════════════════════════════════
-                OTHER PAGES REDIRECT STRIP — scroll reveal
-            ══════════════════════════════════════ */}
+            {/* OTHER PAGES REDIRECT STRIP — scroll reveal */}
             <ScrollReveal>
                 <div className="bg-gray-50 px-6 xl:px-16 py-16">
                     <div className="max-w-7xl mx-auto">
@@ -585,10 +614,7 @@ const Services = () => {
                 </div>
             </ScrollReveal>
 
-
-            {/* ══════════════════════════════════════
-                GET IN TOUCH — scroll reveal
-            ══════════════════════════════════════ */}
+            {/* GET IN TOUCH — scroll reveal */}
             <ScrollReveal>
                 <GetInTouch />
             </ScrollReveal>
