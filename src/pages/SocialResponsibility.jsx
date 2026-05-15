@@ -13,7 +13,7 @@ import {
     TbTools,
 } from 'react-icons/tb'
 import { HiOutlineMail } from 'react-icons/hi'
-import HeroImage from '/images/social/social-hero.jpg'
+import HeroImage from '/images/social/social_hero.jpg'
 
 // Scroll animation variants
 const fadeInUp = {

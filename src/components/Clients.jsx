@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
 
 const Clients = () => {
-    // Clients & Partners - 6 images (client1.png to client6.png)
+    // Clients & Partners - 7 images (client1.png to client7.png)
     const clients = [
         { id: 1, name: 'Client 1', logo: '/images/clients/client1.png', alt: 'Client logo 1' },
         { id: 2, name: 'Client 2', logo: '/images/clients/client2.png', alt: 'Client logo 2' },
@@ -10,7 +10,7 @@ const Clients = () => {
         { id: 4, name: 'Client 4', logo: '/images/clients/client4.png', alt: 'Client logo 4' },
         { id: 5, name: 'Client 5', logo: '/images/clients/client5.png', alt: 'Client logo 5' },
         { id: 6, name: 'Client 6', logo: '/images/clients/client6.png', alt: 'Client logo 6' },
-        { id: 6, name: 'Client 7', logo: '/images/clients/client7.png', alt: 'Client logo 7' },
+        { id: 7, name: 'Client 7', logo: '/images/clients/client7.png', alt: 'Client logo 7' },
     ]
 
     // Professional Bodies & Affiliations - 6 images (bodies1.png to bodies6.png)
@@ -85,7 +85,7 @@ const Clients = () => {
                             <img
                                 src={item.logo}
                                 alt={item.alt}
-                                className="max-w-full h-12 lg:h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                                className="max-w-full h-12 lg:h-16 w-auto object-contain hover:scale-105 transition-all duration-300"
                             />
                         </div>
                     ))}
