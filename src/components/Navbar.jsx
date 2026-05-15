@@ -29,6 +29,7 @@ const Navbar = () => {
         { name: 'Services', path: '/services' },
         { name: 'Commodities', path: '/commodities' },
         { name: 'Social Responsibility', path: '/social-responsibility' },
+        { name: 'Team', path: '/team' },
     ]
 
     const isActive = (path) => location.pathname === path

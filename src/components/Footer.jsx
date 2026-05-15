@@ -12,6 +12,7 @@ const Footer = () => {
         { name: 'Commodities', path: '/commodities' },
         { name: 'Social Responsibility', path: '/social-responsibility' },
         { name: 'Contact', path: '/contact' },
+        { name: 'Team', path: '/team' },
     ]
 
     const servicesLinks = [

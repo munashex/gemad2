@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import About from './pages/About'
 import Commodities from './pages/commodities'
 import SocialResponsibility from './pages/SocialResponsibility'
+import OurTeam from './pages/OurTeam'
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/about" element={<About/>}/>
           <Route path="/commodities" element={<Commodities/>}/>
           <Route path="/social-responsibility" element={<SocialResponsibility/>}/>
+          <Route path="/team" element={<OurTeam/>}/>
         </Routes>
       </main>
       <Footer/>
