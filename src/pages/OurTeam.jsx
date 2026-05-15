@@ -14,6 +14,11 @@ const fadeInUp = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 
+const fadeInLeft = {
+    hidden: { opacity: 0, x: -60 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+}
+
 const ScrollReveal = ({ children }) => {
     const ref = useRef(null)
     const isInView = useInView(ref, { once: true, amount: 0.2 })
@@ -133,7 +138,7 @@ const OurTeam = () => {
 
     return (
         <>
-            {/* HERO SECTION */}
+            {/* HERO SECTION — fade from left (like other pages) */}
             <div className="relative w-full h-[45vh] min-h-[380px] lg:h-[55vh]">
                 <img
                     src={HeroImage}
@@ -146,18 +151,38 @@ const OurTeam = () => {
 
                 <div className="relative h-full flex items-center px-6 xl:px-16">
                     <div className="max-w-3xl space-y-5">
-                        <div className="flex items-center gap-2 text-white/50 text-sm">
+                        {/* Breadcrumb - fade from left */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="flex items-center gap-2 text-white/50 text-sm"
+                        >
                             <Link to="/" className="hover:text-[#c89a60]">Home</Link>
                             <span>/</span>
                             <span className="text-[#c89a60]">Our Team</span>
-                        </div>
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-[#764f24]/60 bg-[#764f24]/10 backdrop-blur-sm">
+                        </motion.div>
+
+                        {/* Badge - fade from left */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: 0.4 }}
+                            className="inline-flex items-center gap-2 px-4 py-1.5 border border-[#764f24]/60 bg-[#764f24]/10 backdrop-blur-sm"
+                        >
                             <span className="w-2 h-2 rounded-full bg-[#764f24] animate-pulse" />
                             <span className="text-[#c89a60] text-xs font-semibold tracking-[0.2em] uppercase">
                                 Meet Our Experts
                             </span>
-                        </div>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                        </motion.div>
+
+                        {/* Heading - fade from left with letter animation */}
+                        <motion.h1 
+                            initial={{ opacity: 0, x: -60 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.6 }}
+                            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+                        >
                             Our{' '}
                             {word.split('').map((letter, idx) => (
                                 <span
@@ -168,11 +193,18 @@ const OurTeam = () => {
                                     {letter}
                                 </span>
                             ))}
-                        </h1>
-                        <p className="text-base md:text-lg text-white/75 leading-relaxed max-w-2xl">
+                        </motion.h1>
+
+                        {/* Description - fade from left */}
+                        <motion.p 
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 0.8 }}
+                            className="text-base md:text-lg text-white/75 leading-relaxed max-w-2xl"
+                        >
                             Meet the experienced professionals driving GEMAD's vision for sustainable
                             mineral asset development across Africa.
-                        </p>
+                        </motion.p>
                     </div>
                 </div>
             </div>

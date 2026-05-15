@@ -8,7 +8,6 @@ const Clients = () => {
         { id: 1, name: 'Client 1', logo: '/images/clients/client1.png', alt: 'Client logo 1' },
         { id: 2, name: 'Client 2', logo: '/images/clients/client2.png', alt: 'Client logo 2' },
         { id: 3, name: 'Client 3', logo: '/images/clients/client3.png', alt: 'Client logo 3' },
-        { id: 4, name: 'Client 4', logo: '/images/clients/client4.png', alt: 'Client logo 4' },
     ]
 
     useEffect(() => {

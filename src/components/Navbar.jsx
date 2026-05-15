@@ -25,10 +25,10 @@ const Navbar = () => {
 
     const navLinks = [
         { name: 'Home', path: '/' },
-        { name: 'About Us', path: '/about' },
+        { name: 'About', path: '/about' },
         { name: 'Services', path: '/services' },
         { name: 'Commodities', path: '/commodities' },
-        { name: 'Social Responsibility', path: '/social-responsibility' },
+        { name: 'Social', path: '/social-responsibility' },
         { name: 'Team', path: '/team' },
     ]
 
@@ -47,7 +47,7 @@ const Navbar = () => {
                 : 'bg-white'
         }`}>
             {/* ── Desktop ── */}
-            <div className="hidden lg:block">
+            <div className="hidden xl:flex">
                 <div className="container mx-auto px-6 xl:px-16 py-2">
                     <div className="flex items-center justify-between">
 
@@ -56,17 +56,17 @@ const Navbar = () => {
                             <img
                                 src="images/logo/logo.png"
                                 alt="GEMAD"
-                                className="h-24 w-auto object-contain hover:opacity-90 transition-opacity duration-200"
+                                className="h-16 w-auto object-contain hover:opacity-90 transition-opacity duration-200"
                             />
                         </Link>
 
                         {/* Nav links */}
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1 xl:gap-2">
                             {navLinks.map((item) => (
                                 <Link
                                     key={item.name}
                                     to={item.path}
-                                    className={`text-base font-semibold py-2 px-4 rounded-lg transition-all duration-200 ${
+                                    className={`text-sm xl:text-base font-semibold py-2 px-3 xl:px-4 rounded-lg transition-all duration-200 ${
                                         isActive(item.path)
                                             ? 'text-[#764f24] bg-[#764f24]/5'
                                             : 'text-gray-700 hover:text-[#764f24] hover:bg-gray-50'
@@ -80,7 +80,7 @@ const Navbar = () => {
                         {/* CTA */}
                         <Link
                             to="/contact"
-                            className="text-base font-semibold px-6 py-2.5 rounded-full bg-[#764f24] text-white hover:bg-[#a06a32] transition-all duration-300 hover:scale-105 shadow-md"
+                            className="text-sm xl:text-base font-semibold px-5 xl:px-6 py-2 rounded-full bg-[#764f24] text-white hover:bg-[#a06a32] transition-all duration-300 hover:scale-105 shadow-md whitespace-nowrap"
                         >
                             Contact Us
                         </Link>
@@ -88,46 +88,47 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* ── Mobile ── */}
-            <div className="lg:hidden">
-                <div className="px-4 py-2 flex items-center justify-between">
+            {/* ── Tablet / Mobile (xl and below) ── */}
+            <div className="flex xl:hidden">
+                <div className="w-full px-4 py-2 flex items-center justify-between">
                     <Link to="/" onClick={() => setToggleNav(false)}>
                         <img
                             src="images/logo/logo.png"
                             alt="GEMAD"
-                            className="h-16 w-auto object-contain"
+                            className="h-12 w-auto object-contain"
                         />
                     </Link>
 
                     <button
                         onClick={() => setToggleNav(!toggleNav)}
-                        className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                        className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 z-50"
                         aria-label="Toggle menu"
                     >
-                        {toggleNav
-                            ? <RiCloseFill size={28} className="text-gray-700" />
-                            : <CgMenu size={28} className="text-gray-700" />
-                        }
+                        {toggleNav ? (
+                            <RiCloseFill size={28} className="text-gray-700" />
+                        ) : (
+                            <CgMenu size={28} className="text-gray-700" />
+                        )}
                     </button>
                 </div>
 
-                {/* Mobile menu - simple fade in/out */}
+                {/* Mobile/Tablet menu */}
                 <AnimatePresence>
                     {toggleNav && (
                         <motion.div 
-                            className="absolute left-0 right-0 bg-white shadow-lg z-40 border-t border-gray-100"
+                            className="fixed top-0 left-0 right-0 bottom-0 bg-white z-40 overflow-y-auto pt-20"
                             initial="hidden"
                             animate="visible"
                             exit="hidden"
                             variants={menuVariants}
                         >
-                            <div className="px-4 py-4 space-y-1">
+                            <div className="px-6 py-4 space-y-2">
                                 {navLinks.map((item) => (
                                     <Link
                                         key={item.name}
                                         to={item.path}
                                         onClick={() => setToggleNav(false)}
-                                        className={`block px-4 py-3 text-base font-semibold rounded-lg transition-colors duration-200 ${
+                                        className={`block px-4 py-3 text-lg font-semibold rounded-lg transition-colors duration-200 ${
                                             isActive(item.path)
                                                 ? 'text-[#764f24] bg-[#764f24]/5'
                                                 : 'text-gray-800 hover:bg-gray-50 hover:text-[#764f24]'
@@ -140,7 +141,7 @@ const Navbar = () => {
                                 <Link
                                     to="/contact"
                                     onClick={() => setToggleNav(false)}
-                                    className="block text-center mt-4 px-4 py-3 text-base font-semibold rounded-full bg-[#764f24] text-white hover:bg-[#a06a32] transition-all duration-300"
+                                    className="block text-center mt-6 px-4 py-3 text-lg font-semibold rounded-full bg-[#764f24] text-white hover:bg-[#a06a32] transition-all duration-300"
                                 >
                                     Contact Us
                                 </Link>
