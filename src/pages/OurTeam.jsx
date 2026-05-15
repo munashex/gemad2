@@ -89,7 +89,7 @@ const OurTeam = () => {
         position: 'Managing Director',
         qualifications: 'BSc (Hons) Geology | Pr.Sci.Nat',
         experience:
-            'Extensive experience in mineral exploration, mining operations, and resource development. Professional Natural Scientist and geologist specializing in geological management, drilling programmes, project leadership, and strategic business development within the mining sector. Experienced in managing exploration, with a strong focus on coal, rare earth elements (REEs), and base metals.',
+            'Gijimani Motau is an experienced geologist and aspiring mining entrepreneur with extensive expertise in mineral exploration, mining operations, and resource development. He specialises in exploration, geological modelling, and resource estimation, with strong experience in managing exploration and drilling programmes, as well as project development. His business interests focus on identifying, evaluating, and advancing high-potential mineral projects into economically viable mining operations. He has a keen interest in coal, Platinum Group Metals (PGMs), and base metals. ',
         image: GijimaniImg,
     }
 
