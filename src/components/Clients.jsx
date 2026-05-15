@@ -10,6 +10,7 @@ const Clients = () => {
         { id: 4, name: 'Client 4', logo: '/images/clients/client4.png', alt: 'Client logo 4' },
         { id: 5, name: 'Client 5', logo: '/images/clients/client5.png', alt: 'Client logo 5' },
         { id: 6, name: 'Client 6', logo: '/images/clients/client6.png', alt: 'Client logo 6' },
+        { id: 6, name: 'Client 7', logo: '/images/clients/client6.png', alt: 'Client logo 7' },
     ]
 
     // Professional Bodies & Affiliations - 6 images (bodies1.png to bodies6.png)
