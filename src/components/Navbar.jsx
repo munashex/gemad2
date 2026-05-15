@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { CgMenu } from 'react-icons/cg'
 import { RiCloseFill } from 'react-icons/ri'
-import { motion, AnimatePresence } from 'framer-motion'
 
 const Navbar = () => {
     const [toggleNav, setToggleNav] = useState(false)
@@ -34,12 +33,6 @@ const Navbar = () => {
 
     const isActive = (path) => location.pathname === path
 
-    // Simple animation variants
-    const menuVariants = {
-        hidden: { opacity: 0, y: -20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
-    }
-
     return (
         <div className={`sticky top-0 z-50 transition-all duration-300 ${
             scrolled 
@@ -47,14 +40,14 @@ const Navbar = () => {
                 : 'bg-white'
         }`}>
             {/* ── Desktop ── */}
-            <div className="hidden xl:flex">
+            <div className="hidden lg:block">
                 <div className="container mx-auto px-6 xl:px-16 py-2">
                     <div className="flex items-center justify-between">
 
                         {/* Logo */}
                         <Link to="/" className="shrink-0">
                             <img
-                                src="images/logo/logo.png"
+                                src="/images/logo/logo.png"
                                 alt="GEMAD"
                                 className="h-16 w-auto object-contain hover:opacity-90 transition-opacity duration-200"
                             />
@@ -88,12 +81,12 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* ── Tablet / Mobile (xl and below) ── */}
-            <div className="flex xl:hidden">
-                <div className="w-full px-4 py-2 flex items-center justify-between">
+            {/* ── Mobile ── */}
+            <div className="lg:hidden">
+                <div className="px-4 py-2 flex items-center justify-between">
                     <Link to="/" onClick={() => setToggleNav(false)}>
                         <img
-                            src="images/logo/logo.png"
+                            src="/images/logo/logo.png"
                             alt="GEMAD"
                             className="h-12 w-auto object-contain"
                         />
@@ -101,7 +94,7 @@ const Navbar = () => {
 
                     <button
                         onClick={() => setToggleNav(!toggleNav)}
-                        className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 z-50"
+                        className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
                         aria-label="Toggle menu"
                     >
                         {toggleNav ? (
@@ -112,43 +105,35 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                {/* Mobile/Tablet menu */}
-                <AnimatePresence>
-                    {toggleNav && (
-                        <motion.div 
-                            className="fixed top-0 left-0 right-0 bottom-0 bg-white z-40 overflow-y-auto pt-20"
-                            initial="hidden"
-                            animate="visible"
-                            exit="hidden"
-                            variants={menuVariants}
-                        >
-                            <div className="px-6 py-4 space-y-2">
-                                {navLinks.map((item) => (
-                                    <Link
-                                        key={item.name}
-                                        to={item.path}
-                                        onClick={() => setToggleNav(false)}
-                                        className={`block px-4 py-3 text-lg font-semibold rounded-lg transition-colors duration-200 ${
-                                            isActive(item.path)
-                                                ? 'text-[#764f24] bg-[#764f24]/5'
-                                                : 'text-gray-800 hover:bg-gray-50 hover:text-[#764f24]'
-                                        }`}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                ))}
-
+                {/* Mobile menu */}
+                {toggleNav && (
+                    <div className="absolute left-0 right-0 bg-white shadow-lg z-40 border-t border-gray-100">
+                        <div className="px-4 py-4 space-y-1">
+                            {navLinks.map((item) => (
                                 <Link
-                                    to="/contact"
+                                    key={item.name}
+                                    to={item.path}
                                     onClick={() => setToggleNav(false)}
-                                    className="block text-center mt-6 px-4 py-3 text-lg font-semibold rounded-full bg-[#764f24] text-white hover:bg-[#a06a32] transition-all duration-300"
+                                    className={`block px-4 py-3 text-base font-semibold rounded-lg transition-colors duration-200 ${
+                                        isActive(item.path)
+                                            ? 'text-[#764f24] bg-[#764f24]/5'
+                                            : 'text-gray-800 hover:bg-gray-50 hover:text-[#764f24]'
+                                    }`}
                                 >
-                                    Contact Us
+                                    {item.name}
                                 </Link>
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                            ))}
+
+                            <Link
+                                to="/contact"
+                                onClick={() => setToggleNav(false)}
+                                className="block text-center mt-4 px-4 py-3 text-base font-semibold rounded-full bg-[#764f24] text-white hover:bg-[#a06a32] transition-all duration-300"
+                            >
+                                Contact Us
+                            </Link>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )
