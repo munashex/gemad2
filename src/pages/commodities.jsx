@@ -14,6 +14,13 @@ import RareEarthImg from '/images/commodities/rare-earth.jpg'
 import CoalImg from '/images/commodities/coal.jpg'
 import BaseMetalsImg from '/images/commodities/base-metals.jpg'
 
+// Critical Minerals Images (5 images)
+import CriticalMineral1 from '/images/commodities/critical-mineral-1.png'
+import CriticalMineral2 from '/images/commodities/critical-mineral-2.png'
+import CriticalMineral3 from '/images/commodities/critical-mineral-3.png'
+import CriticalMineral4 from '/images/commodities/critical-mineral-4.png'
+import CriticalMineral5 from '/images/commodities/critical-mineral-5.png'
+
 // Scroll animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -61,28 +68,29 @@ const Commodities = () => {
         const timer = setTimeout(() => {
             setStartLetterAnimation(true)
         }, 1200)
-
         return () => clearTimeout(timer)
     }, [])
 
     // Letter-by-letter color change animation
     useEffect(() => {
         if (!startLetterAnimation) return
-
         const letters = word.split('')
         letters.forEach((_, index) => {
             setTimeout(() => {
-                setLetterColors(prev => ({
-                    ...prev,
-                    [index]: targetColor
-                }))
+                setLetterColors(prev => ({ ...prev, [index]: targetColor }))
             }, index * 200)
         })
     }, [startLetterAnimation])
 
-    const getLetterColor = (index) => {
-        return letterColors[index] || "#ffffff"
-    }
+    const getLetterColor = (index) => letterColors[index] || "#ffffff"
+
+    const criticalMineralsList = [
+        { id: 1, image: CriticalMineral1, name: 'Critical Mineral 1' },
+        { id: 2, image: CriticalMineral2, name: 'Critical Mineral 2' },
+        { id: 3, image: CriticalMineral3, name: 'Critical Mineral 3' },
+        { id: 4, image: CriticalMineral4, name: 'Critical Mineral 4' },
+        { id: 5, image: CriticalMineral5, name: 'Critical Mineral 5' },
+    ]
 
     const subCommodities = [
         {
@@ -112,9 +120,7 @@ const Commodities = () => {
 
     return (
         <>
-            {/* ══════════════════════════════════════
-                HERO SECTION — fade from left then letter animation
-            ══════════════════════════════════════ */}
+            {/* HERO SECTION */}
             <div className="relative w-full h-[45vh] min-h-[380px] lg:h-[55vh]">
                 <img
                     src={HeroImage}
@@ -127,19 +133,17 @@ const Commodities = () => {
 
                 <div className="relative h-full flex items-center px-6 xl:px-16">
                     <div className="max-w-3xl space-y-5">
-                        {/* Breadcrumb - fade from left */}
                         <motion.div 
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="flex items-center gap-2 text-white/50 text-sm"
                         >
-                            <Link to="/" className="hover:text-[#c89a60] transition-colors duration-200">Home</Link>
+                            <Link to="/" className="hover:text-[#c89a60]">Home</Link>
                             <span>/</span>
                             <span className="text-[#c89a60]">Commodities</span>
                         </motion.div>
 
-                        {/* Badge - fade from left */}
                         <motion.div 
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -152,7 +156,6 @@ const Commodities = () => {
                             </span>
                         </motion.div>
 
-                        {/* Main headline - fade from left */}
                         <motion.h1 
                             initial={{ opacity: 0, x: -60 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -162,18 +165,13 @@ const Commodities = () => {
                             Our{' '}
                             <span className="inline-block">
                                 {word.split('').map((letter, idx) => (
-                                    <span
-                                        key={idx}
-                                        style={{ color: getLetterColor(idx) }}
-                                        className="inline-block transition-colors duration-300"
-                                    >
+                                    <span key={idx} style={{ color: getLetterColor(idx) }} className="inline-block transition-colors duration-300">
                                         {letter}
                                     </span>
                                 ))}
                             </span>
                         </motion.h1>
 
-                        {/* Description - fade from left */}
                         <motion.p 
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -187,9 +185,7 @@ const Commodities = () => {
                 </div>
             </div>
 
-            {/* ══════════════════════════════════════
-                STATS BAR — with scroll animation
-            ══════════════════════════════════════ */}
+            {/* STATS BAR */}
             <ScrollReveal>
                 <div className="bg-[#15202a] border-y border-[#764f24]/20">
                     <div className="px-6 xl:px-16 py-8">
@@ -216,9 +212,7 @@ const Commodities = () => {
                 </div>
             </ScrollReveal>
 
-            {/* ══════════════════════════════════════
-                COMMODITIES SECTION — Umbrella design with animated cards
-            ══════════════════════════════════════ */}
+            {/* CRITICAL MINERALS SECTION */}
             <ScrollReveal>
                 <div className="bg-white px-6 xl:px-16 py-20 lg:py-24">
                     <div className="max-w-7xl mx-auto">
@@ -226,23 +220,42 @@ const Commodities = () => {
                             <div className="flex items-center justify-center gap-2 mb-3">
                                 <div className="w-10 h-[2px] bg-[#764f24]" />
                                 <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">
-                                    Commodity Focus
+                                    Critical Minerals
                                 </p>
                                 <div className="w-10 h-[2px] bg-[#764f24]" />
                             </div>
                             <h2 className="text-3xl lg:text-4xl font-bold text-[#15202a] mb-4">
-                                Our Commodity Portfolio
+                                Critical Minerals Portfolio
                             </h2>
                             <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                                GEMAD is focused on building a diversified portfolio of high-quality mineral assets,
-                                spanning critical minerals, rare earth elements, coal, and base metals.
+                                GEMAD focuses on critical minerals required for industrial growth, renewable energy technologies, 
+                                and future global supply chains.
                             </p>
+                        </div>
+
+                        {/* Critical Minerals Image Gallery - No borders, smaller size */}
+                        <div className="flex flex-wrap justify-center gap-6 mb-16">
+                            {criticalMineralsList.map((mineral, idx) => (
+                                <motion.div
+                                    key={mineral.id}
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                                    viewport={{ once: true }}
+                                    className="group w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32"
+                                >
+                                    <img
+                                        src={mineral.image}
+                                        alt={mineral.name}
+                                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                                    />
+                                </motion.div>
+                            ))}
                         </div>
 
                         {/* Umbrella layout */}
                         <div className="flex flex-col items-center">
-
-                            {/* Critical Minerals - Animated Card */}
+                            {/* Critical Minerals Info Card */}
                             <motion.div 
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -291,7 +304,7 @@ const Commodities = () => {
                                 </svg>
                             </div>
 
-                            {/* Sub-commodities cards below - Animated */}
+                            {/* Sub-commodities cards below */}
                             <div className="w-full mt-2">
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                     {subCommodities.map((commodity, idx) => (
@@ -304,7 +317,6 @@ const Commodities = () => {
                                             className="flex flex-col items-center h-full"
                                         >
                                             <div className="group relative bg-white border border-[#764f24] rounded-xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 w-full flex flex-col h-full">
-                                                {/* Image Section */}
                                                 <div className="relative h-48 overflow-hidden">
                                                     <img
                                                         src={commodity.image}
@@ -324,7 +336,6 @@ const Commodities = () => {
                                                     </div>
                                                 </div>
 
-                                                {/* Content */}
                                                 <div className="p-5 flex-1">
                                                     <h3 className="text-lg font-bold text-[#15202a] mb-2 group-hover:text-[#764f24] transition-colors duration-200">
                                                         {commodity.title}
@@ -333,14 +344,10 @@ const Commodities = () => {
                                                         {commodity.description}
                                                     </p>
 
-                                                    {/* Base Metals Tags */}
                                                     {commodity.title === 'Base Metals' && (
                                                         <div className="flex flex-wrap gap-1.5 mt-3 pt-2 border-t border-gray-100">
                                                             {baseMetalsList.map((metal, i) => (
-                                                                <span
-                                                                    key={i}
-                                                                    className="text-[10px] font-medium text-[#764f24] bg-[#764f24]/8 px-2 py-0.5 rounded-full"
-                                                                >
+                                                                <span key={i} className="text-[10px] font-medium text-[#764f24] bg-[#764f24]/8 px-2 py-0.5 rounded-full">
                                                                     {metal}
                                                                 </span>
                                                             ))}
@@ -356,10 +363,7 @@ const Commodities = () => {
 
                         {/* CTA Button */}
                         <div className="mt-12 text-center">
-                            <Link
-                                to="/contact"
-                                className="inline-flex items-center gap-2 px-8 py-4 bg-[#15202a] hover:bg-[#764f24] text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg group"
-                            >
+                            <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-[#15202a] hover:bg-[#764f24] text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg group">
                                 Discuss Our Commodities
                                 <FaArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-300" />
                             </Link>
@@ -368,23 +372,17 @@ const Commodities = () => {
                 </div>
             </ScrollReveal>
 
-            {/* ══════════════════════════════════════
-                STRATEGIC VALUE SECTION — with animated cards
-            ══════════════════════════════════════ */}
+            {/* STRATEGIC VALUE SECTION */}
             <ScrollReveal>
                 <div className="bg-gradient-to-b from-gray-50 to-white px-6 xl:px-16 py-20 lg:py-24">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-12">
                             <div className="flex items-center justify-center gap-2 mb-3">
                                 <div className="w-10 h-[2px] bg-[#764f24]" />
-                                <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">
-                                    Why It Matters
-                                </p>
+                                <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">Why It Matters</p>
                                 <div className="w-10 h-[2px] bg-[#764f24]" />
                             </div>
-                            <h2 className="text-3xl lg:text-4xl font-bold text-[#15202a] mb-4">
-                                Strategic Value
-                            </h2>
+                            <h2 className="text-3xl lg:text-4xl font-bold text-[#15202a] mb-4">Strategic Value</h2>
                             <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
                                 The commodities in our portfolio are essential drivers of modern industry,
                                 energy transition, and sustainable development.
@@ -456,19 +454,14 @@ const Commodities = () => {
                 </div>
             </ScrollReveal>
 
-            {/* ══════════════════════════════════════
-                CTA SECTION — with scroll animation
-            ══════════════════════════════════════ */}
+            {/* CTA SECTION */}
             <ScrollReveal>
                 <div className="relative bg-[#15202a] overflow-hidden">
                     <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#764f24] via-[#c89a60] to-transparent" />
-                    <div
-                        className="absolute inset-0 opacity-5 pointer-events-none"
-                        style={{
-                            backgroundImage: `repeating-linear-gradient(45deg, #764f24 0, #764f24 2px, transparent 0, transparent 50%)`,
-                            backgroundSize: '24px 24px',
-                        }}
-                    />
+                    <div className="absolute inset-0 opacity-5 pointer-events-none" style={{
+                        backgroundImage: `repeating-linear-gradient(45deg, #764f24 0, #764f24 2px, transparent 0, transparent 50%)`,
+                        backgroundSize: '24px 24px',
+                    }} />
 
                     <div className="px-6 xl:px-16 py-20 lg:py-28 relative">
                         <div className="max-w-3xl mx-auto text-center space-y-6">
@@ -488,27 +481,18 @@ const Commodities = () => {
                                 or exploration partnerships — our team is ready to discuss opportunities.
                             </p>
                             <div className="flex flex-wrap gap-4 justify-center pt-4">
-                                <Link
-                                    to="/contact"
-                                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#764f24] to-[#a06a32] hover:from-[#8a5b2e] hover:to-[#764f24] text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg group"
-                                >
+                                <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#764f24] to-[#a06a32] hover:from-[#8a5b2e] hover:to-[#764f24] text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg group">
                                     Contact Our Team
                                     <FaArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-300" />
                                 </Link>
-                                <Link
-                                    to="/services"
-                                    className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border-2 border-white/20 hover:bg-white/20 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 group"
-                                >
+                                <Link to="/services" className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border-2 border-white/20 hover:bg-white/20 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 group">
                                     Explore Our Services
                                     <FaArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-300" />
                                 </Link>
                             </div>
 
                             <div className="pt-6 flex flex-wrap justify-center gap-6 text-white/45 text-sm">
-                                <a
-                                    href="mailto:info@gemad.co.za"
-                                    className="hover:text-[#c89a60] transition-colors duration-200 inline-flex items-center gap-2"
-                                >
+                                <a href="mailto:info@gemad.co.za" className="hover:text-[#c89a60] transition-colors duration-200 inline-flex items-center gap-2">
                                     <HiOutlineMail size={16} />
                                     info@gemad.co.za
                                 </a>
