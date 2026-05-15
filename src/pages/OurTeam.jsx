@@ -119,7 +119,7 @@ const OurTeam = () => {
             image: NjabuloImg,
         },
         {
-            name: 'Nangaamso Magobiyane',
+            name: 'Nangamso Magobiyane',
             position: 'Resource Geologist',
             qualifications: 'BSc (Hons) Geology | Pr.Sci.Nat | MBA',
             experience:
