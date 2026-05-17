@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { TbBriefcase, TbCertificate, TbMapPin } from 'react-icons/tb'
 import HeroImage from '/images/team/hero-image.jpg'
 import GijimaniImg from '/images/team/GijimaniMotau.jpg'
-import IsaacImg from '/images/team/IsaacMabonda.jpg'
+import IsaacImg from '/images/team/Isaac.jpg'
 import NjabuloImg from '/images/team/NjabuloMxusile.jpg'
 import NangamsoImg from '/images/team/NangamsoMagobiyane.jpg'
 
