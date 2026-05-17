@@ -317,7 +317,7 @@ const Commodities = () => {
                                             className="flex flex-col items-center h-full"
                                         >
                                             <div className="group relative bg-white border border-[#764f24] rounded-xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 w-full flex flex-col h-full">
-                                                <div className="relative h-48 overflow-hidden">
+                                                <div className="relative h-60 overflow-hidden">
                                                     <img
                                                         src={commodity.image}
                                                         alt={commodity.title}
