@@ -1,3 +1,5 @@
+import SEO from '../components/SEO'
+import { commoditiesSEO } from '../constants/seo'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaCheckCircle } from 'react-icons/fa'
 import {
@@ -120,6 +122,7 @@ const Commodities = () => {
 
     return (
         <>
+          <SEO {...commoditiesSEO} />
             {/* HERO SECTION */}
             <div className="relative w-full h-[45vh] min-h-[380px] lg:h-[55vh]">
                 <img

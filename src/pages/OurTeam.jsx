@@ -1,3 +1,5 @@
+import SEO from '../components/SEO'
+import { teamSEO } from '../constants/seo'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaUserCircle, FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import { motion, useAnimation, useInView } from 'framer-motion'
@@ -138,6 +140,7 @@ const OurTeam = () => {
 
     return (
         <>
+         <SEO {...teamSEO} />
             {/* HERO SECTION — fade from left (like other pages) */}
             <div className="relative w-full h-[45vh] min-h-[380px] lg:h-[55vh]">
                 <img

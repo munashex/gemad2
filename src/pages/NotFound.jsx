@@ -1,7 +1,10 @@
+import SEO from '../components/SEO'
+import { notFoundSEO } from '../constants/seo'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaHome } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+
 
 const NotFound = () => {
     const [letterColors, setLetterColors] = useState({})
@@ -46,6 +49,8 @@ const NotFound = () => {
     }
 
     return (
+        <>
+         <SEO {...notFoundSEO} />
         <div className="relative min-h-screen bg-gradient-to-br from-[#15202a] to-[#1e2a35] overflow-hidden">
             
             {/* Background decorative elements */}
@@ -189,6 +194,7 @@ const NotFound = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

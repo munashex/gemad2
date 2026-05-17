@@ -1,3 +1,5 @@
+import SEO from '../components/SEO'
+import { aboutSEO } from '../constants/seo'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaCheckCircle } from 'react-icons/fa'
 import { MdVerified } from 'react-icons/md'
@@ -131,6 +133,7 @@ const About = () => {
 
     return (
         <>
+        <SEO {...aboutSEO} />
             {/* ══════════════════════════════════════
                 HERO SECTION — fade from left then letter animation
             ══════════════════════════════════════ */}

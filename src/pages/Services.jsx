@@ -1,3 +1,5 @@
+import SEO from '../components/SEO'
+import { servicesSEO } from '../constants/seo'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaCheckCircle } from 'react-icons/fa'
 import { MdVerified } from 'react-icons/md'
@@ -292,7 +294,7 @@ const Services = () => {
 
     return (
         <>
-
+        <SEO {...servicesSEO} />
             {/* HERO SECTION */}
             <div className="relative w-full h-[55vh] min-h-[420px]">
                 <img

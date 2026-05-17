@@ -1,3 +1,5 @@
+import SEO from '../components/SEO'
+import { homeSEO } from '../constants/seo'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaCheckCircle } from 'react-icons/fa'
 import { MdVerified } from 'react-icons/md'
@@ -204,7 +206,8 @@ const Home = () => {
 
     return (
         <>
-
+       
+        <SEO {...homeSEO} />
             {/* ══════════════════════════════════════
                 1. HERO with Slideshow - 3 images
             ══════════════════════════════════════ */}

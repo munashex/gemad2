@@ -1,3 +1,5 @@
+import SEO from '../components/SEO'
+import { socialResponsibilitySEO } from '../constants/seo'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaCheckCircle } from 'react-icons/fa'
 import { motion, useAnimation, useInView } from 'framer-motion'
@@ -134,6 +136,7 @@ const SocialResponsibility = () => {
 
     return (
         <>
+          <SEO {...socialResponsibilitySEO} />
             {/* ══════════════════════════════════════
                 HERO SECTION — with fade from left and letter animation
             ══════════════════════════════════════ */}

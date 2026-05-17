@@ -1,3 +1,5 @@
+import SEO from '../components/SEO'
+import { contactSEO } from '../constants/seo'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaLinkedin } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
@@ -121,6 +123,7 @@ const Contact = () => {
 
     return (
         <>
+          <SEO {...contactSEO} />
             {/* ══════════════════════════════════════
                 HERO SECTION — with fade from left and letter animation on "Us"
             ══════════════════════════════════════ */}
