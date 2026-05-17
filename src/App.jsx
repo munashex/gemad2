@@ -9,6 +9,7 @@ import About from './pages/About'
 import Commodities from './pages/commodities'
 import SocialResponsibility from './pages/SocialResponsibility'
 import OurTeam from './pages/OurTeam'
+import NotFound from './pages/NotFound'
 
 const App = () => {
 
@@ -25,7 +26,8 @@ const App = () => {
           <Route path="/about" element={<About/>}/>
           <Route path="/commodities" element={<Commodities/>}/>
           <Route path="/social-responsibility" element={<SocialResponsibility/>}/>
-          <Route path="/team" element={<OurTeam/>}/>
+          <Route path="/team" element={<OurTeam/>}/> 
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
       </main>
       <Footer/>
