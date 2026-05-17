@@ -16,8 +16,11 @@ import {
     TbReportAnalytics,
 } from 'react-icons/tb'
 import { HiOutlineMail } from 'react-icons/hi'
+// Hero slideshow images (3 images)
 import HeroImage from '/images/home/geological.jpg'
-import HeroImage2 from '/images/home/geological1.jpg'
+import HeroImage1 from '/images/home/geological1.jpg'
+import HeroImage2 from '/images/home/geological2.jpg'
+// About section image
 import AboutImage from '/images/home/geological3.jpg'
 import Clients from '../components/Clients'
 
@@ -154,10 +157,11 @@ const whyUs = [
 /* ─── HOME PAGE WITH FRAMER MOTION ─── */
 
 const Home = () => {
+    // 3 hero images for slideshow
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
     const [letterColors, setLetterColors] = useState({})
     const [startLetterAnimation, setStartLetterAnimation] = useState(false)
-    const heroImages = [HeroImage, HeroImage2]
+    const heroImages = [HeroImage, HeroImage1, HeroImage2]
     const word = "Bankable"
     const targetColor = "#c89a60"
 
@@ -201,7 +205,7 @@ const Home = () => {
         <>
 
             {/* ══════════════════════════════════════
-                1. HERO with Slideshow - Text LEFT ALIGNED
+                1. HERO with Slideshow - 3 images
             ══════════════════════════════════════ */}
             <div className="relative w-full overflow-hidden min-h-[600px] lg:min-h-[700px]">
 
@@ -494,7 +498,7 @@ const Home = () => {
 
 
             {/* ══════════════════════════════════════
-                4. COMMODITIES SECTION - Updated Critical Minerals card design
+                4. COMMODITIES SECTION
             ══════════════════════════════════════ */}
             <ScrollReveal>
                 <div className="bg-white">
@@ -514,7 +518,7 @@ const Home = () => {
                             </div>
 
                             <div className="flex flex-col items-center">
-                                {/* Critical Minerals Card - New white design like Commodities page */}
+                                {/* Critical Minerals Card */}
                                 <div className="max-w-2xl mx-auto w-full mb-8">
                                     <div className="group bg-white rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-gray-100 hover:border-[#764f24]/30 relative overflow-hidden">
                                         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#764f24]/5 to-transparent rounded-bl-full" />
@@ -608,7 +612,7 @@ const Home = () => {
 
 
             {/* ══════════════════════════════════════
-                5. VISION & MISSION - WITH SCROLL ANIMATION
+                5. VISION & MISSION
             ══════════════════════════════════════ */}
             <ScrollReveal>
                 <div className="bg-[#15202a]">
@@ -797,7 +801,7 @@ const Home = () => {
 
 
             {/* ══════════════════════════════════════
-                10. CONTACT CTA - WITH SCROLL ANIMATION
+                10. CONTACT CTA
             ══════════════════════════════════════ */}
             <ScrollReveal>
                 <div className="relative bg-[#15202a] overflow-hidden">
