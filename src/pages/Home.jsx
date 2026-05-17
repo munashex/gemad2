@@ -16,10 +16,11 @@ import {
     TbReportAnalytics,
 } from 'react-icons/tb'
 import { HiOutlineMail } from 'react-icons/hi'
-// Hero slideshow images (3 images)
+// Hero slideshow images (4 images)
 import HeroImage from '/images/home/geological.jpg'
 import HeroImage1 from '/images/home/geological1.jpg'
-import HeroImage2 from '/images/home/geological2.jpg'
+import HeroImage2 from '/images/home/geological2.jpg' 
+import HeroImage3 from '/images/home/geological4.jpg'
 // About section image
 import AboutImage from '/images/home/geological3.jpg'
 import Clients from '../components/Clients'
@@ -161,7 +162,7 @@ const Home = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
     const [letterColors, setLetterColors] = useState({})
     const [startLetterAnimation, setStartLetterAnimation] = useState(false)
-    const heroImages = [HeroImage, HeroImage1, HeroImage2]
+    const heroImages = [HeroImage3,HeroImage, HeroImage1, HeroImage2]
     const word = "Bankable"
     const targetColor = "#c89a60"
 
