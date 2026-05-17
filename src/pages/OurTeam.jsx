@@ -135,7 +135,7 @@ const OurTeam = () => {
             experience:
                 'Extensive experience in mining, engineering, technology, and project development sectors. Experienced entrepreneur and project development specialist with expertise in business development, project coordination, contract negotiations, strategic partnerships, and mining project development. Skilled in project planning, exploration support, bankability studies, operational management, and facilitating strategic business and project implementation initiatives.',
             image: null,
-        },
+        }
     ]
 
     return (
