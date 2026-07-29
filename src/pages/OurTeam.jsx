@@ -10,7 +10,7 @@ import GijimaniImg from '/images/team/GijimaniMotau.jpg'
 import IsaacImg from '/images/team/Isaac.jpg'
 import NjabuloImg from '/images/team/NjabuloMxusile.jpg'
 import NangamsoImg from '/images/team/NangamsoMagobiyane.jpg'
-import Motanto from '/images/team/MotantoRahlogo.jpg'
+import Tloto from '/images/team/Tloto.jpg'
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 50 },
@@ -130,12 +130,12 @@ const OurTeam = () => {
             image: NangamsoImg,
         },
         {
-            name: 'Motanto Rahlogo',
-            position: 'Project Development',
-            qualifications: 'BSc (Hons) Electrical Engineering',
+            name: 'Tloto Kearata Poti',
+            position: 'Junior Mine Planner',
+            qualifications: 'BEng Mining Engineering',
             experience:
-                'Extensive experience in mining, engineering, technology, and project development sectors. Experienced entrepreneur and project development specialist with expertise in business development, project coordination, contract negotiations, strategic partnerships, and mining project development. Skilled in project planning, exploration support, bankability studies, operational management, and facilitating strategic business and project implementation initiatives.',
-            image: Motanto,
+                'Tloto is a Mining Engineer with over three years of experience in the mining and construction sectors. His expertise spans mine planning and design, production scheduling, drill and blast engineering, costing, explosive handling, geotechnical analysis, soil profiling, and mining design simulations. Based in Botswana, he supports the delivery of technically sound and efficient mining solutions across the project development lifecycle.',
+            image: Tloto,
         }
     ]
 

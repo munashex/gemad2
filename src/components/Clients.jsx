@@ -4,7 +4,6 @@ import { motion, useAnimation, useInView } from 'framer-motion'
 const Clients = () => {
     // Clients & Partners - 7 images (client1.png to client7.png)
     const clients = [
-        { id: 1, name: 'Client 1', logo: '/images/clients/client1.png', alt: 'Client logo 1' },
         { id: 2, name: 'Client 2', logo: '/images/clients/client2.png', alt: 'Client logo 2' },
         { id: 3, name: 'Client 3', logo: '/images/clients/client3.png', alt: 'Client logo 3' },
         { id: 4, name: 'Client 4', logo: '/images/clients/client4.png', alt: 'Client logo 4' },
@@ -29,7 +28,9 @@ const Clients = () => {
         { id: 2, name: 'Training 2', logo: '/images/clients/training2.png', alt: 'Training logo 2' },
         { id: 3, name: 'Training 3', logo: '/images/clients/training3.png', alt: 'Training logo 3' },
         { id: 4, name: 'Training 4', logo: '/images/clients/training4.png', alt: 'Training logo 4' },
+         { id: 5, name: 'Training 5', logo: '/images/clients/training5.jpg', alt: 'Training logo 5' },
     ]
+    
 
     // Simple fade in animation - runs ONCE when in view
     const fadeInUp = {
