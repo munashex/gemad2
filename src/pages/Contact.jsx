@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useForm, ValidationError } from '@formspree/react'
 import HeroImage from '/images/contact/contact-hero.jpg'
 
-
+// 👇 YOUR FORMSPREE FORM ID
 const FORMSPREE_ID = 'mrenvbpg'
 
 // Scroll animation variants
@@ -218,7 +218,7 @@ const Contact = () => {
                                                 name="name"
                                                 placeholder="Your full name"
                                                 required
-                                                className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200"
+                                                className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200 min-w-[300px]"
                                             />
                                             <ValidationError 
                                                 field="name" 
@@ -236,7 +236,7 @@ const Contact = () => {
                                                 name="email"
                                                 placeholder="your@email.com"
                                                 required
-                                                className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200"
+                                                className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200 min-w-[300px]"
                                             />
                                             <ValidationError 
                                                 field="email" 
@@ -254,7 +254,7 @@ const Contact = () => {
                                                 placeholder="Tell us about your project, inquiry, or how we can help..."
                                                 required
                                                 rows={6}
-                                                className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200 resize-none"
+                                                className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200 resize-none min-w-[300px]"
                                             />
                                             <ValidationError 
                                                 field="message" 
