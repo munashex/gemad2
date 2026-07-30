@@ -24,8 +24,8 @@ const Footer = () => {
 
     const contactInfo = {
         address: 'Office No.15, Mareu Buildings, No.5 Samuel Road, Delmas, 2210, South Africa',
-        phone1: '072 027 0434',
-        phone2: '072 715 0780',
+        phone1: '+27 72 027 0434',  // 👈 Updated
+        phone2: '+27 72 715 0780',  // 👈 Updated
         email: 'info@gemad.co.za',
         website: 'www.gemad.co.za'
     }
@@ -92,10 +92,10 @@ const Footer = () => {
                                 <li className="flex items-center gap-3">
                                     <FaPhone size={14} className="text-[#c89a60] shrink-0" />
                                     <div>
-                                        <a href={`tel:${contactInfo.phone1.replace(/\s/g, '')}`} className="text-white/60 text-sm hover:text-[#c89a60] transition-colors duration-200 block">
+                                        <a href="tel:+27720270434" className="text-white/60 text-sm hover:text-[#c89a60] transition-colors duration-200 block">
                                             {contactInfo.phone1}
                                         </a>
-                                        <a href={`tel:${contactInfo.phone2.replace(/\s/g, '')}`} className="text-white/60 text-sm hover:text-[#c89a60] transition-colors duration-200 block">
+                                        <a href="tel:+27727150780" className="text-white/60 text-sm hover:text-[#c89a60] transition-colors duration-200 block">
                                             {contactInfo.phone2}
                                         </a>
                                     </div>

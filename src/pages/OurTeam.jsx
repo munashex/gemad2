@@ -130,11 +130,11 @@ const OurTeam = () => {
             image: NangamsoImg,
         },
         {
-            name: 'Tloto Kearata Poti',
+            name: 'Tlotlo Kearata Poti',
             position: 'Junior Mine Planner',
             qualifications: 'BEng Mining Engineering',
             experience:
-                'Tloto is a Mining Engineer with over three years of experience in the mining and construction sectors. His expertise spans mine planning and design, production scheduling, drill and blast engineering, costing, explosive handling, geotechnical analysis, soil profiling, and mining design simulations. Based in Botswana, he supports the delivery of technically sound and efficient mining solutions across the project development lifecycle.',
+                'Tlotlo is a Mining Engineer with over three years of experience in the mining and construction sectors. His expertise spans mine planning and design, production scheduling, drill and blast engineering, costing, explosive handling, geotechnical analysis, soil profiling, and mining design simulations. Based in Botswana, he supports the delivery of technically sound and efficient mining solutions across the project development lifecycle.',
             image: Tloto,
         }
     ]
