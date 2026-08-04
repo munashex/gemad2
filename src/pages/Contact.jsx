@@ -1,3 +1,4 @@
+
 import SEO from '../components/SEO'
 import { contactSEO } from '../constants/seo'
 import { Link } from 'react-router-dom'
@@ -6,11 +7,13 @@ import { HiOutlineMail } from 'react-icons/hi'
 import { TbMapPin } from 'react-icons/tb'
 import { motion, useAnimation, useInView } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
-import { useForm, ValidationError } from '@formspree/react'
+import emailjs from '@emailjs/browser'
 import HeroImage from '/images/contact/contact-hero.jpg'
 
-// 👇 YOUR FORMSPREE FORM ID
-const FORMSPREE_ID = 'mrenvbpg'
+// 👇 YOUR EMAILJS CREDENTIALS (from emailjs.com dashboard)
+const EMAILJS_SERVICE_ID = 'service_2d4mdg5'
+const EMAILJS_TEMPLATE_ID = 'template_gfk1d2n'
+const EMAILJS_PUBLIC_KEY = 'TScleMrx7otXkKfDW'
 
 // Scroll animation variants
 const fadeInUp = {
@@ -49,8 +52,11 @@ const Contact = () => {
     const word = "Us"
     const targetColor = "#c89a60"
 
-    // Formspree hook
-    const [state, handleSubmit] = useForm(FORMSPREE_ID)
+    // Form ref for emailjs.sendForm
+    const formRef = useRef(null)
+
+    // Form submission state (replaces Formspree's `state`)
+    const [status, setStatus] = useState({ submitting: false, succeeded: false, error: null })
 
     // Start letter animation
     useEffect(() => {
@@ -78,6 +84,26 @@ const Contact = () => {
 
     const getLetterColor = (index) => {
         return letterColors[index] || "#ffffff"
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setStatus({ submitting: true, succeeded: false, error: null })
+
+        emailjs
+            .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current, {
+                publicKey: EMAILJS_PUBLIC_KEY,
+            })
+            .then(
+                () => {
+                    setStatus({ submitting: false, succeeded: true, error: null })
+                    formRef.current.reset()
+                },
+                (error) => {
+                    console.error('EmailJS error:', error)
+                    setStatus({ submitting: false, succeeded: false, error: 'Something went wrong. Please try again or email us directly.' })
+                }
+            )
     }
 
     const businessHours = [
@@ -202,6 +228,7 @@ const Contact = () => {
                                 {/* Form */}
                                 <div className="lg:col-span-3">
                                     <motion.form
+                                        ref={formRef}
                                         onSubmit={handleSubmit}
                                         initial={{ opacity: 0, y: 30 }}
                                         whileInView={{ opacity: 1, y: 0 }}
@@ -220,11 +247,6 @@ const Contact = () => {
                                                 required
                                                 className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200"
                                             />
-                                            <ValidationError 
-                                                field="name" 
-                                                errors={state.errors} 
-                                                className="text-red-400 text-sm mt-1"
-                                            />
                                         </div>
 
                                         <div>
@@ -237,11 +259,6 @@ const Contact = () => {
                                                 placeholder="your@email.com"
                                                 required
                                                 className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200"
-                                            />
-                                            <ValidationError 
-                                                field="email" 
-                                                errors={state.errors} 
-                                                className="text-red-400 text-sm mt-1"
                                             />
                                         </div>
 
@@ -256,28 +273,29 @@ const Contact = () => {
                                                 rows={6}
                                                 className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200 resize-none"
                                             />
-                                            <ValidationError 
-                                                field="message" 
-                                                errors={state.errors} 
-                                                className="text-red-400 text-sm mt-1"
-                                            />
                                         </div>
 
                                         <button
                                             type="submit"
-                                            disabled={state.submitting}
+                                            disabled={status.submitting}
                                             className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#764f24] hover:bg-[#a06a32] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-lg group text-lg"
                                         >
                                             <HiOutlineMail size={20} />
-                                            {state.submitting ? 'Sending...' : 'Send Message'}
-                                            {!state.submitting && (
+                                            {status.submitting ? 'Sending...' : 'Send Message'}
+                                            {!status.submitting && (
                                                 <FaArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
                                             )}
                                         </button>
 
-                                        {state.succeeded && (
+                                        {status.succeeded && (
                                             <div className="bg-emerald-500/20 border-2 border-emerald-500/30 text-emerald-400 px-5 py-3.5 rounded-xl text-sm font-medium text-center">
                                                 ✓ Message sent successfully! We'll be in touch soon.
+                                            </div>
+                                        )}
+
+                                        {status.error && (
+                                            <div className="bg-red-500/20 border-2 border-red-500/30 text-red-400 px-5 py-3.5 rounded-xl text-sm font-medium text-center">
+                                                {status.error}
                                             </div>
                                         )}
                                     </motion.form>
