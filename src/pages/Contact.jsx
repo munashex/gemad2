@@ -12,8 +12,8 @@ import HeroImage from '/images/contact/contact-hero.jpg'
 
 // 👇 YOUR EMAILJS CREDENTIALS (from emailjs.com dashboard)
 const EMAILJS_SERVICE_ID = 'service_2d4mdg5'
-const EMAILJS_TEMPLATE_ID = 'template_gfk1d2n'
-const EMAILJS_PUBLIC_KEY = 'TScleMrx7otXkKfDW'
+const EMAILJS_TEMPLATE_ID = 'template_ri1bgi8'
+const EMAILJS_PUBLIC_KEY = 'TScIeMrx7otXkKfDW'
 
 // Scroll animation variants
 const fadeInUp = {
