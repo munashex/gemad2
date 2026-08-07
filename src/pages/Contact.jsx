@@ -1,4 +1,3 @@
-
 import SEO from '../components/SEO'
 import { contactSEO } from '../constants/seo'
 import { Link } from 'react-router-dom'
@@ -55,7 +54,7 @@ const Contact = () => {
     // Form ref for emailjs.sendForm
     const formRef = useRef(null)
 
-    // Form submission state (replaces Formspree's `state`)
+    // Form submission state
     const [status, setStatus] = useState({ submitting: false, succeeded: false, error: null })
 
     // Start letter animation
@@ -303,8 +302,77 @@ const Contact = () => {
 
                                 {/* Contact Info Sidebar */}
                                 <div className="lg:col-span-2 space-y-6">
+                                    {/* South Africa Office */}
                                     <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-[#764f24]/40 transition-all duration-300">
-                                        <div className="flex items-center gap-4 mb-4">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="w-8 h-8 rounded-full bg-[#764f24]/20 flex items-center justify-center">
+                                                <span className="text-[#c89a60] text-xs font-bold">ZA</span>
+                                            </div>
+                                            <h4 className="text-white font-semibold text-sm">South Africa Office</h4>
+                                        </div>
+                                        
+                                        <div className="space-y-3">
+                                            <div className="flex items-start gap-3">
+                                                <FaMapMarkerAlt size={14} className="text-[#c89a60] mt-0.5 shrink-0" />
+                                                <div>
+                                                    <p className="text-white/70 text-sm leading-relaxed">
+                                                        Office No.15<br />
+                                                        Mareu Buildings<br />
+                                                        No.5 Samuel Road<br />
+                                                        Delmas, 2210<br />
+                                                        South Africa
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="flex items-center gap-3">
+                                                <FaPhone size={14} className="text-[#c89a60] shrink-0" />
+                                                <div>
+                                                    <a href="tel:+27720270434" className="text-white/70 text-sm hover:text-[#c89a60] transition-colors block">
+                                                        +27 72 027 0434
+                                                    </a>
+                                                    <a href="tel:+27727150780" className="text-white/70 text-sm hover:text-[#c89a60] transition-colors block">
+                                                        +27 72 715 0780
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Botswana Office */}
+                                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-[#764f24]/40 transition-all duration-300">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="w-8 h-8 rounded-full bg-[#764f24]/20 flex items-center justify-center">
+                                                <span className="text-[#c89a60] text-xs font-bold">BW</span>
+                                            </div>
+                                            <h4 className="text-white font-semibold text-sm">Botswana Office</h4>
+                                        </div>
+                                        
+                                        <div className="space-y-3">
+                                            <div className="flex items-start gap-3">
+                                                <FaMapMarkerAlt size={14} className="text-[#c89a60] mt-0.5 shrink-0" />
+                                                <div>
+                                                    <p className="text-white/70 text-sm leading-relaxed">
+                                                        Plot 4723<br />
+                                                        Garanta<br />
+                                                        Molepolole<br />
+                                                        Botswana
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="flex items-center gap-3">
+                                                <FaPhone size={14} className="text-[#c89a60] shrink-0" />
+                                                <a href="tel:+26773965795" className="text-white/70 text-sm hover:text-[#c89a60] transition-colors">
+                                                    +267 73 965 795
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Email - Shared */}
+                                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-[#764f24]/40 transition-all duration-300">
+                                        <div className="flex items-center gap-4">
                                             <div className="w-12 h-12 rounded-full bg-[#764f24]/20 flex items-center justify-center">
                                                 <HiOutlineMail size={22} className="text-[#c89a60]" />
                                             </div>
@@ -317,41 +385,9 @@ const Contact = () => {
                                                 </a>
                                             </div>
                                         </div>
-                                        
-                                        <div className="flex items-center gap-4 mb-4">
-                                            <div className="w-12 h-12 rounded-full bg-[#764f24]/20 flex items-center justify-center">
-                                                <FaPhone size={20} className="text-[#c89a60]" />
-                                            </div>
-                                            <div>
-                                                <p className="text-white/60 text-xs font-semibold tracking-wider uppercase">
-                                                    Phone
-                                                </p>
-                                                <div className="space-y-1">
-                                                    <a href="tel:+27720270434" className="text-white font-medium hover:text-[#c89a60] transition-colors block">
-                                                        +27 72 027 0434
-                                                    </a>
-                                                    <a href="tel:+27727150780" className="text-white font-medium hover:text-[#c89a60] transition-colors block">
-                                                        +27 72 715 0780
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 rounded-full bg-[#764f24]/20 flex items-center justify-center">
-                                                <FaMapMarkerAlt size={20} className="text-[#c89a60]" />
-                                            </div>
-                                            <div>
-                                                <p className="text-white/60 text-xs font-semibold tracking-wider uppercase">
-                                                    Location
-                                                </p>
-                                                <p className="text-white font-medium">
-                                                    Delmas, South Africa
-                                                </p>
-                                            </div>
-                                        </div>
                                     </div>
 
+                                    {/* Connect With Us */}
                                     <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-[#764f24]/40 transition-all duration-300">
                                         <p className="text-white/60 text-xs font-semibold tracking-wider uppercase mb-4">
                                             Connect With Us
@@ -378,12 +414,13 @@ const Contact = () => {
                                         </div>
                                     </div>
 
+                                    {/* Footer info */}
                                     <div className="text-white/30 text-xs space-y-2 pt-4 border-t border-white/5">
                                         <p className="flex items-center gap-2">
                                             <span>🌍</span> www.gemad.co.za
                                         </p>
                                         <p className="flex items-center gap-2">
-                                            <span>📍</span> South Africa
+                                            <span>📍</span> South Africa | Botswana
                                         </p>
                                     </div>
                                 </div>
@@ -400,6 +437,7 @@ const Contact = () => {
                 <div className="bg-gradient-to-b from-gray-50 to-white px-6 xl:px-16 py-20 lg:py-24">
                     <div className="max-w-7xl mx-auto">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            {/* South Africa Map */}
                             <div className="group lg:col-span-1">
                                 <div className="flex items-center gap-3 mb-6">
                                     <div className="w-10 h-10 rounded-full bg-[#764f24]/10 flex items-center justify-center">
@@ -407,7 +445,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">
-                                            Our Location
+                                            South Africa
                                         </p>
                                         <h2 className="text-2xl font-bold text-[#15202a]">
                                             Find Us Here
@@ -424,7 +462,7 @@ const Contact = () => {
                                         allowFullScreen
                                         loading="lazy"
                                         referrerPolicy="no-referrer-when-downgrade"
-                                        title="GEMAD Office Location"
+                                        title="GEMAD South Africa Office"
                                         className="w-full"
                                     ></iframe>
                                 </div>
@@ -435,69 +473,113 @@ const Contact = () => {
                                             <TbMapPin size={18} className="text-[#764f24]" />
                                         </div>
                                         <div>
-                                            <p className="font-bold text-[#15202a] mb-1">GEMAD Head Office</p>
-                                            <div className="text-gray-500 text-sm leading-relaxed space-y-0.5">
+                                            <p className="font-bold text-[#15202a] mb-1">GEMAD South Africa</p>
+                                            <div className="text-gray-600 text-sm leading-relaxed space-y-0.5">
                                                 <p>Office No.15</p>
                                                 <p>Mareu Buildings</p>
                                                 <p>No.5 Samuel Road</p>
-                                                <p>Delmas</p>
-                                                <p>2210</p>
+                                                <p>Delmas, 2210</p>
+                                                <p>South Africa</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+                            {/* Botswana Office + Business Hours */}
                             <div className="lg:col-span-1">
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="w-10 h-10 rounded-full bg-[#764f24]/10 flex items-center justify-center">
-                                        <FaClock size={16} className="text-[#764f24]" />
-                                    </div>
-                                    <div>
-                                        <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">
-                                            Office Hours
-                                        </p>
-                                        <h2 className="text-2xl font-bold text-[#15202a]">
-                                            When to Find Us
-                                        </h2>
-                                    </div>
-                                </div>
-                                
-                                <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden mb-6">
-                                    {businessHours.map((item, idx) => (
-                                        <div 
-                                            key={idx}
-                                            className={`flex justify-between items-center p-4 transition-all duration-200 ${
-                                                idx !== businessHours.length - 1 ? 'border-b border-gray-50' : ''
-                                            } hover:bg-gray-50/50`}
-                                        >
-                                            <span className="font-semibold text-[#15202a]">{item.day}</span>
-                                            <span className={`text-sm font-medium ${
-                                                item.status === 'closed' ? 'text-red-400' : 'text-emerald-600'
-                                            }`}>
-                                                {item.hours}
-                                            </span>
+                                {/* Botswana Office Card */}
+                                <div className="mb-6">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="w-10 h-10 rounded-full bg-[#764f24]/10 flex items-center justify-center">
+                                            <FaMapMarkerAlt size={16} className="text-[#764f24]" />
                                         </div>
-                                    ))}
+                                        <div>
+                                            <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">
+                                                Botswana
+                                            </p>
+                                            <h2 className="text-2xl font-bold text-[#15202a]">
+                                                Our Botswana Office
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition-all duration-300">
+                                        <div className="flex items-start gap-3">
+                                            <div className="w-10 h-10 rounded-lg bg-[#764f24]/10 flex items-center justify-center shrink-0">
+                                                <TbMapPin size={18} className="text-[#764f24]" />
+                                            </div>
+                                            <div>
+                                                <p className="font-bold text-[#15202a] mb-1">GEMAD Botswana</p>
+                                                <div className="text-gray-600 text-sm leading-relaxed space-y-0.5">
+                                                    <p>Plot 4723</p>
+                                                    <p>Garanta</p>
+                                                    <p>Molepolole</p>
+                                                    <p>Botswana</p>
+                                                </div>
+                                                <div className="mt-3 pt-3 border-t border-gray-100">
+                                                    <a href="tel:+26773965795" className="inline-flex items-center gap-2 text-[#764f24] font-semibold hover:text-[#c89a60] transition-colors">
+                                                        <FaPhone size={14} />
+                                                        +267 73 965 795
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <a
-                                    href="https://www.linkedin.com/company/g-e-m-a-d/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group block bg-gradient-to-r from-[#15202a] to-[#1e2a35] rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                                >
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-full bg-[#764f24]/20 flex items-center justify-center group-hover:bg-[#764f24] transition-all duration-300">
-                                            <FaLinkedin size={22} className="text-[#c89a60] group-hover:text-white transition-all duration-300" />
+                                {/* Business Hours */}
+                                <div>
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="w-10 h-10 rounded-full bg-[#764f24]/10 flex items-center justify-center">
+                                            <FaClock size={16} className="text-[#764f24]" />
                                         </div>
-                                        <div className="flex-1">
-                                            <p className="font-bold text-white mb-0.5">Follow GEMAD</p>
-                                            <p className="text-white/50 text-xs">Stay updated on LinkedIn</p>
+                                        <div>
+                                            <p className="text-[#764f24] text-xs font-semibold tracking-[0.25em] uppercase">
+                                                Office Hours
+                                            </p>
+                                            <h2 className="text-2xl font-bold text-[#15202a]">
+                                                When to Find Us
+                                            </h2>
                                         </div>
-                                        <FaArrowRight size={14} className="text-[#c89a60] group-hover:translate-x-1 transition-transform duration-300" />
                                     </div>
-                                </a>
+                                    
+                                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden mb-6">
+                                        {businessHours.map((item, idx) => (
+                                            <div 
+                                                key={idx}
+                                                className={`flex justify-between items-center p-4 transition-all duration-200 ${
+                                                    idx !== businessHours.length - 1 ? 'border-b border-gray-50' : ''
+                                                } hover:bg-gray-50/50`}
+                                            >
+                                                <span className="font-semibold text-[#15202a]">{item.day}</span>
+                                                <span className={`text-sm font-medium ${
+                                                    item.status === 'closed' ? 'text-red-400' : 'text-emerald-600'
+                                                }`}>
+                                                    {item.hours}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <a
+                                        href="https://www.linkedin.com/company/g-e-m-a-d/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group block bg-gradient-to-r from-[#15202a] to-[#1e2a35] rounded-xl p-5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-12 h-12 rounded-full bg-[#764f24]/20 flex items-center justify-center group-hover:bg-[#764f24] transition-all duration-300">
+                                                <FaLinkedin size={22} className="text-[#c89a60] group-hover:text-white transition-all duration-300" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="font-bold text-white mb-0.5">Follow GEMAD</p>
+                                                <p className="text-white/50 text-xs">Stay updated on LinkedIn</p>
+                                            </div>
+                                            <FaArrowRight size={14} className="text-[#c89a60] group-hover:translate-x-1 transition-transform duration-300" />
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
