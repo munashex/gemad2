@@ -205,8 +205,7 @@ const Contact = () => {
                     />
 
                     <div className="px-6 xl:px-16 py-20 lg:py-24 relative">
-                        <div className="max-w-6xl mx-auto">
-                            {/* Section Header */}
+                        <div className="max-w-4xl mx-auto">
                             <div className="text-center mb-12">
                                 <div className="flex items-center justify-center gap-3 mb-4">
                                     <div className="w-12 h-[2px] bg-[#764f24]" />
@@ -223,208 +222,78 @@ const Contact = () => {
                                 </p>
                             </div>
 
-                            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-                                {/* Form */}
-                                <div className="lg:col-span-3">
-                                    <motion.form
-                                        ref={formRef}
-                                        onSubmit={handleSubmit}
-                                        initial={{ opacity: 0, y: 30 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.6 }}
-                                        viewport={{ once: true }}
-                                        className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 space-y-6"
-                                    >
-                                        <div>
-                                            <label className="block text-white text-sm font-semibold mb-2">
-                                                Full Name
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                placeholder="Your full name"
-                                                required
-                                                className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200"
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-white text-sm font-semibold mb-2">
-                                                Email Address
-                                            </label>
-                                            <input
-                                                type="email"
-                                                name="email"
-                                                placeholder="your@email.com"
-                                                required
-                                                className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200"
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-white text-sm font-semibold mb-2">
-                                                Message
-                                            </label>
-                                            <textarea
-                                                name="message"
-                                                placeholder="Tell us about your project, inquiry, or how we can help..."
-                                                required
-                                                rows={6}
-                                                className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200 resize-none"
-                                            />
-                                        </div>
-
-                                        <button
-                                            type="submit"
-                                            disabled={status.submitting}
-                                            className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#764f24] hover:bg-[#a06a32] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-lg group text-lg"
-                                        >
-                                            <HiOutlineMail size={20} />
-                                            {status.submitting ? 'Sending...' : 'Send Message'}
-                                            {!status.submitting && (
-                                                <FaArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
-                                            )}
-                                        </button>
-
-                                        {status.succeeded && (
-                                            <div className="bg-emerald-500/20 border-2 border-emerald-500/30 text-emerald-400 px-5 py-3.5 rounded-xl text-sm font-medium text-center">
-                                                ✓ Message sent successfully! We'll be in touch soon.
-                                            </div>
-                                        )}
-
-                                        {status.error && (
-                                            <div className="bg-red-500/20 border-2 border-red-500/30 text-red-400 px-5 py-3.5 rounded-xl text-sm font-medium text-center">
-                                                {status.error}
-                                            </div>
-                                        )}
-                                    </motion.form>
+                            <motion.form
+                                ref={formRef}
+                                onSubmit={handleSubmit}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6 }}
+                                viewport={{ once: true }}
+                                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 space-y-6"
+                            >
+                                <div>
+                                    <label className="block text-white text-sm font-semibold mb-2">
+                                        Full Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        placeholder="Your full name"
+                                        required
+                                        className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200"
+                                    />
                                 </div>
 
-                                {/* Contact Info Sidebar */}
-                                <div className="lg:col-span-2 space-y-6">
-                                    {/* South Africa Office */}
-                                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-[#764f24]/40 transition-all duration-300">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-8 h-8 rounded-full bg-[#764f24]/20 flex items-center justify-center">
-                                                <span className="text-[#c89a60] text-xs font-bold">ZA</span>
-                                            </div>
-                                            <h4 className="text-white font-semibold text-sm">South Africa Office</h4>
-                                        </div>
-                                        
-                                        <div className="space-y-3">
-                                            <div className="flex items-start gap-3">
-                                                <FaMapMarkerAlt size={14} className="text-[#c89a60] mt-0.5 shrink-0" />
-                                                <div>
-                                                    <p className="text-white/70 text-sm leading-relaxed">
-                                                        Office No.15<br />
-                                                        Mareu Buildings<br />
-                                                        No.5 Samuel Road<br />
-                                                        Delmas, 2210<br />
-                                                        South Africa
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="flex items-center gap-3">
-                                                <FaPhone size={14} className="text-[#c89a60] shrink-0" />
-                                                <div>
-                                                    <a href="tel:+27720270434" className="text-white/70 text-sm hover:text-[#c89a60] transition-colors block">
-                                                        +27 72 027 0434
-                                                    </a>
-                                                    <a href="tel:+27727150780" className="text-white/70 text-sm hover:text-[#c89a60] transition-colors block">
-                                                        +27 72 715 0780
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Botswana Office */}
-                                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-[#764f24]/40 transition-all duration-300">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-8 h-8 rounded-full bg-[#764f24]/20 flex items-center justify-center">
-                                                <span className="text-[#c89a60] text-xs font-bold">BW</span>
-                                            </div>
-                                            <h4 className="text-white font-semibold text-sm">Botswana Office</h4>
-                                        </div>
-                                        
-                                        <div className="space-y-3">
-                                            <div className="flex items-start gap-3">
-                                                <FaMapMarkerAlt size={14} className="text-[#c89a60] mt-0.5 shrink-0" />
-                                                <div>
-                                                    <p className="text-white/70 text-sm leading-relaxed">
-                                                        Plot 4723<br />
-                                                        Garanta<br />
-                                                        Molepolole<br />
-                                                        Botswana
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="flex items-center gap-3">
-                                                <FaPhone size={14} className="text-[#c89a60] shrink-0" />
-                                                <a href="tel:+26773965795" className="text-white/70 text-sm hover:text-[#c89a60] transition-colors">
-                                                    +267 73 965 795
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Email - Shared */}
-                                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-[#764f24]/40 transition-all duration-300">
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 rounded-full bg-[#764f24]/20 flex items-center justify-center">
-                                                <HiOutlineMail size={22} className="text-[#c89a60]" />
-                                            </div>
-                                            <div>
-                                                <p className="text-white/60 text-xs font-semibold tracking-wider uppercase">
-                                                    Email
-                                                </p>
-                                                <a href="mailto:info@gemad.co.za" className="text-white font-medium hover:text-[#c89a60] transition-colors">
-                                                    info@gemad.co.za
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Connect With Us */}
-                                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-[#764f24]/40 transition-all duration-300">
-                                        <p className="text-white/60 text-xs font-semibold tracking-wider uppercase mb-4">
-                                            Connect With Us
-                                        </p>
-                                        <div className="flex flex-wrap gap-3">
-                                            <a
-                                                href="https://www.linkedin.com/company/g-e-m-a-d/"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-xl transition-all duration-300 hover:scale-105 group"
-                                            >
-                                                <FaLinkedin size={16} />
-                                                LinkedIn
-                                                <FaArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" />
-                                            </a>
-                                            <a
-                                                href="mailto:info@gemad.co.za"
-                                                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#764f24]/20 hover:bg-[#764f24]/30 text-[#c89a60] text-sm font-medium rounded-xl transition-all duration-300 hover:scale-105 group"
-                                            >
-                                                <HiOutlineMail size={16} />
-                                                Email Us
-                                                <FaArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" />
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    {/* Footer info */}
-                                    <div className="text-white/30 text-xs space-y-2 pt-4 border-t border-white/5">
-                                        <p className="flex items-center gap-2">
-                                            <span>🌍</span> www.gemad.co.za
-                                        </p>
-                                        <p className="flex items-center gap-2">
-                                            <span>📍</span> South Africa | Botswana
-                                        </p>
-                                    </div>
+                                <div>
+                                    <label className="block text-white text-sm font-semibold mb-2">
+                                        Email Address
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        placeholder="your@email.com"
+                                        required
+                                        className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200"
+                                    />
                                 </div>
-                            </div>
+
+                                <div>
+                                    <label className="block text-white text-sm font-semibold mb-2">
+                                        Message
+                                    </label>
+                                    <textarea
+                                        name="message"
+                                        placeholder="Tell us about your project, inquiry, or how we can help..."
+                                        required
+                                        rows={6}
+                                        className="w-full px-5 py-3.5 rounded-xl bg-white/90 text-[#15202a] placeholder-gray-400 border-2 border-transparent focus:border-[#c89a60] focus:outline-none focus:ring-4 focus:ring-[#c89a60]/20 transition-all duration-200 resize-none"
+                                    />
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    disabled={status.submitting}
+                                    className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#764f24] hover:bg-[#a06a32] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-lg group text-lg"
+                                >
+                                    <HiOutlineMail size={20} />
+                                    {status.submitting ? 'Sending...' : 'Send Message'}
+                                    {!status.submitting && (
+                                        <FaArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
+                                    )}
+                                </button>
+
+                                {status.succeeded && (
+                                    <div className="bg-emerald-500/20 border-2 border-emerald-500/30 text-emerald-400 px-5 py-3.5 rounded-xl text-sm font-medium text-center">
+                                        ✓ Message sent successfully! We'll be in touch soon.
+                                    </div>
+                                )}
+
+                                {status.error && (
+                                    <div className="bg-red-500/20 border-2 border-red-500/30 text-red-400 px-5 py-3.5 rounded-xl text-sm font-medium text-center">
+                                        {status.error}
+                                    </div>
+                                )}
+                            </motion.form>
                         </div>
                     </div>
                 </div>
@@ -437,7 +306,8 @@ const Contact = () => {
                 <div className="bg-gradient-to-b from-gray-50 to-white px-6 xl:px-16 py-20 lg:py-24">
                     <div className="max-w-7xl mx-auto">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                            {/* South Africa Map */}
+                            
+                            {/* South Africa - Map */}
                             <div className="group lg:col-span-1">
                                 <div className="flex items-center gap-3 mb-6">
                                     <div className="w-10 h-10 rounded-full bg-[#764f24]/10 flex items-center justify-center">
@@ -481,15 +351,25 @@ const Contact = () => {
                                                 <p>Delmas, 2210</p>
                                                 <p>South Africa</p>
                                             </div>
+                                            <div className="mt-3 pt-3 border-t border-gray-100 space-y-1">
+                                                <a href="tel:+27720270434" className="flex items-center gap-2 text-[#764f24] font-semibold hover:text-[#c89a60] transition-colors text-sm">
+                                                    <FaPhone size={14} />
+                                                    +27 72 027 0434
+                                                </a>
+                                                <a href="tel:+27727150780" className="flex items-center gap-2 text-[#764f24] font-semibold hover:text-[#c89a60] transition-colors text-sm">
+                                                    <FaPhone size={14} />
+                                                    +27 72 715 0780
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Botswana Office + Business Hours */}
+                            {/* Botswana - Text Only + Business Hours */}
                             <div className="lg:col-span-1">
-                                {/* Botswana Office Card */}
-                                <div className="mb-6">
+                                {/* Botswana Office - Text Only */}
+                                <div>
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="w-10 h-10 rounded-full bg-[#764f24]/10 flex items-center justify-center">
                                             <FaMapMarkerAlt size={16} className="text-[#764f24]" />
@@ -504,7 +384,7 @@ const Contact = () => {
                                         </div>
                                     </div>
                                     
-                                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition-all duration-300">
+                                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 hover:shadow-md transition-all duration-300">
                                         <div className="flex items-start gap-3">
                                             <div className="w-10 h-10 rounded-lg bg-[#764f24]/10 flex items-center justify-center shrink-0">
                                                 <TbMapPin size={18} className="text-[#764f24]" />
@@ -518,7 +398,7 @@ const Contact = () => {
                                                     <p>Botswana</p>
                                                 </div>
                                                 <div className="mt-3 pt-3 border-t border-gray-100">
-                                                    <a href="tel:+26773965795" className="inline-flex items-center gap-2 text-[#764f24] font-semibold hover:text-[#c89a60] transition-colors">
+                                                    <a href="tel:+26773965795" className="flex items-center gap-2 text-[#764f24] font-semibold hover:text-[#c89a60] transition-colors text-sm">
                                                         <FaPhone size={14} />
                                                         +267 73 965 795
                                                     </a>
@@ -528,8 +408,8 @@ const Contact = () => {
                                     </div>
                                 </div>
 
-                                {/* Business Hours */}
-                                <div>
+                                {/* Business Hours - Added mt-12 for spacing */}
+                                <div className="mt-12">
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="w-10 h-10 rounded-full bg-[#764f24]/10 flex items-center justify-center">
                                             <FaClock size={16} className="text-[#764f24]" />
@@ -562,6 +442,7 @@ const Contact = () => {
                                         ))}
                                     </div>
 
+                                    {/* LinkedIn - Original Style */}
                                     <a
                                         href="https://www.linkedin.com/company/g-e-m-a-d/"
                                         target="_blank"
