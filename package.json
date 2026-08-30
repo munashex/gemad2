@@ -12,6 +12,7 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@formspree/react": "^3.0.0",
+    "@monime/pdfio": "^0.1.21",
     "@tailwindcss/vite": "^4.3.0",
     "framer-motion": "^12.38.0",
     "react": "^19.2.6",
