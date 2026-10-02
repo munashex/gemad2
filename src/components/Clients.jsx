@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
 
 const Clients = () => {
-    // Clients & Partners - 7 images (client1.png to client7.png)
+    // Clients & Partners - 7 images (client1.png to client9.png)
     const clients = [
         { id: 2, name: 'Client 2', logo: '/images/clients/client2.png', alt: 'Client logo 2' },
         { id: 3, name: 'Client 3', logo: '/images/clients/client3.png', alt: 'Client logo 3' },
@@ -10,6 +10,8 @@ const Clients = () => {
         { id: 5, name: 'Client 5', logo: '/images/clients/client5.png', alt: 'Client logo 5' },
         { id: 6, name: 'Client 6', logo: '/images/clients/client6.png', alt: 'Client logo 6' },
         { id: 7, name: 'Client 7', logo: '/images/clients/client7.png', alt: 'Client logo 7' },
+        { id: 8, name: 'Client 8', logo: '/images/clients/client8.png', alt: 'Client logo 8' },
+        { id: 9, name: 'Client 9', logo: '/images/clients/client9.png', alt: 'Client logo 9' },
     ]
 
     // Professional Bodies & Affiliations - 6 images (bodies1.png to bodies6.png)
